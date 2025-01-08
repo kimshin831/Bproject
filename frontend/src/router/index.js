@@ -4,6 +4,7 @@ import footerFix from '../components/footerFix.vue';
 import Category from '../views/Category.vue';
 import Login from '../views/Login.vue';
 import Qna from '../views/Qna.vue';
+import Mypage from '../views/Mypage.vue';
 
 const routes = [
     {
@@ -46,6 +47,11 @@ const routes = [
         path: '/qna',
         name: 'Qna',
         component: Qna
+    },
+    {
+        path: '/mypage',
+        name: 'Mypage',
+        component: Mypage
     }
 ];
 
