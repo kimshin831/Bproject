@@ -122,7 +122,7 @@
                                     data-bs-parent="#accordionExample"
                                 >
                                     <div class="accordion-body">
-                                        <a class="nav-link">어성초</a>
+                                        <a class="nav-link" @click="Ingredient">어성초</a>
                                         <a class="nav-link">콜라겐</a>
                                         <a class="nav-link">히알루론산</a>
                                         <a class="nav-link">판테놀</a>
@@ -190,30 +190,30 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" to="/qna">
-                    <div class="nav_icon">
+                <a class="nav-link">
+                    <div class="nav_icon" @click="Qna">
                         <img src="../assets/img/qna.svg" alt="qna" />
                         <p>Q&A</p>
                     </div>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" to="/">
-                    <div class="nav_icon">
+                <a class="nav-link">
+                    <div class="nav_icon" @click="Main">
                         <img src="../assets/img/NEDE_logo.png" alt="logo" class="nav_logo" />
                     </div>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" to="/">
+                <a class="nav-link">
                     <div class="nav_icon">
-                        <img src="../assets/img/real.svg" alt="qna" />
+                        <img src="../assets/img/real.svg" alt="review" />
                         <p>리얼리뷰</p>
                     </div>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" @click="MyPage">
+                <a class="nav-link" @click="Mypage">
                     <div class="nav_icon">
                         <img src="../assets/img/user.svg" alt="qna" />
                         <p>마이페이지</p>
@@ -232,8 +232,17 @@ export default {
                 window.location.reload(); // 새로고침 강제 수행
             });
         },
-        Login() {
+        Mypage() {
             this.$router.push('/mypage');
+        },
+        Main() {
+            this.$router.push('/');
+        },
+        Qna() {
+            this.$router.push('/qna');
+        },
+        Ingredient() {
+            this.$router.push('/ingredient');
         }
     }
 };
