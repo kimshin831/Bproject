@@ -1,15 +1,15 @@
 <template>
     <div class="container">
         <TopButton title="상세페이지" />
-        <div class="itembox">
+        <div class="itemBox">
             <div class="itemimg">
                 <img :src="product.image" alt="상품이미지" />
             </div>
-            <div class="itemtext">
-                <p>#000#000#000</p>
-                <p>4.7점</p>
-                <p>{{ product.title }}</p>
-                <p>{{ product.price }} 원</p>
+            <div class="itemText">
+                <p class="item_tag">#000 #000 #000</p>
+                <p class="item_score"><img src="@/assets/img/leaf.svg" alt="score" /> 4.3점</p>
+                <p class="item_title">{{ product.title }}</p>
+                <p class="item_price">{{ product.price }} 원</p>
             </div>
         </div>
         <div class="buttons">
@@ -55,28 +55,62 @@ export default {
 };
 </script>
 <style scoped>
-.itembox {
+.itemBox {
     width: 100%;
+    margin-top: 20px;
 }
-.itembox .itemimg {
-    width: 100%;
-    height: 350px;
-    background-color: #999;
-}
-.itembox .itemimg img {
+.itemBox .itemimg {
     width: 100%;
     height: 350px;
 }
-.itembox .itemtext {
-    width: 80%;
+.itemBox .itemimg img {
+    width: 100%;
+    height: 350px;
+}
+.itemBox .itemText {
+    width: 90%;
     margin: 0 auto;
 }
-.itembox .itemtext p {
+.itemBox .itemText p {
     text-align: left;
+    margin: 0;
+    font-size: 1em;
+    line-height: 27px;
+}
+
+.itemBox .itemText img {
+    margin-right: 5px;
+    filter: invert(10%) sepia(89%) saturate(6058%) hue-rotate(83deg) brightness(108%) contrast(86%);
+}
+
+.itemBox .itemText .item_score {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.itemBox .itemText .item_title {
+    font-size: 1.2em;
+    letter-spacing: -0.5px;
+    font-weight: 700;
+}
+.itemBox .itemText .item_price {
+    margin-top: 22px;
+    font-size: 1.1em;
 }
 
 .buttons {
-    width: 80%;
-    margin: 0 auto;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.buttons button {
+    border: none;
+    border-radius: 5px;
+    background: #a68151;
+    padding: 10px;
+    margin: 5px;
+    color: white;
+    font-weight: bold;
 }
 </style>

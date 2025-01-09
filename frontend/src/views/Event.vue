@@ -40,7 +40,7 @@ export default {
 
 <style scoped>
 h2 {
-    margin: 15px 0px;
+    margin: 35px 0px 15px;
     font-size: 20px;
     font-weight: bold;
     text-align: center;
@@ -55,10 +55,9 @@ h2 {
     line-height: 24px;
     text-align: center;
     margin-top: 15px;
-    margin-bottom: 50px;
 }
 
 .margin {
-    height: 35px;
+    height: 67px;
 }
 </style>

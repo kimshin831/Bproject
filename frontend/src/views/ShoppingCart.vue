@@ -35,7 +35,7 @@
                 </div>
             </div>
         </div>
-        <div v-else>
+        <div v-else class="v-else">
             <p>장바구니가 비어 있습니다.</p>
         </div>
         <div class="buyBox" v-if="cart.length > 0">
@@ -183,24 +183,30 @@ export default {
     float: left;
 }
 
+.itemOptions p:first-child {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
 .itemOptions .numBox {
-    width: auto;
-    margin: 0 auto;
-    margin-top: 19px;
+    width: 143px;
+    margin-top: 5px;
     float: left;
-    line-height: 30px;
+    line-height: 20px;
     background: #ececec;
-    padding: 5px;
+    text-align: center;
+    padding: 3px 0;
     border-radius: 3px;
 }
 
 .itemOptions .numBox p {
-    margin-right: 7px;
+    font-size: 0.95rem;
+    margin-left: 13px;
 }
 
 .numBox button {
-    width: 20px;
-    font-size: 1.2rem;
+    width: auto;
+    font-size: 1.1rem;
     margin: 3px 0;
     border: none;
     background: none;
@@ -208,7 +214,7 @@ export default {
 
 .itemOptions span {
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 /* 하단 구매하기 */
@@ -252,6 +258,18 @@ export default {
     align-items: center;
     border: none;
     border-radius: 5px;
+    font-weight: bold;
+}
+.v-else {
+    height: 100vh;
+    text-align: center;
+    line-height: 75vh;
+}
+
+.v-else > p {
+    margin: 0 auto;
+    font-size: 1.25rem;
+    letter-spacing: -0.3px;
     font-weight: bold;
 }
 </style>

@@ -172,8 +172,7 @@ export default {
 </script>
 <style scoped>
 .checkout-container {
-    margin: 20px;
-    padding: 20px;
+    margin: 15px;
 }
 
 .section {
@@ -181,8 +180,11 @@ export default {
 }
 
 .section h2 {
-    font-size: 18px;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: -0.2px;
     margin-bottom: 10px;
+    background: #ffbff6;
 }
 
 .btns {

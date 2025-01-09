@@ -15,7 +15,7 @@
                 </swiper-slide>
             </swiper>
         </div>
-        <div class="tab-content">
+        <div class="tab-contents">
             <!-- 현재 activeTab에 해당하는 콘텐츠만 렌더링 -->
             <div v-if="menuItems[activeTab]">
                 {{ menuItems[activeTab].content }}
@@ -210,7 +210,8 @@ button.dropdown-item:root {
 }
 
 /* 콘텐츠 */
-.tab-content {
+
+.tab-contents {
     background: #f1f1f1;
     margin: -7px 0 8px 0;
     text-align: left;
@@ -222,6 +223,13 @@ button.dropdown-item:root {
 }
 
 /* 상품  */
+
+.tab-content {
+    margin: -7px 0 8px 0;
+    text-align: left;
+    padding: 5px 10px;
+    letter-spacing: -0.2px;
+}
 .contents {
     margin: 0 auto;
     max-width: 390px;
@@ -229,6 +237,7 @@ button.dropdown-item:root {
     flex-wrap: wrap;
     justify-content: space-between;
 }
+
 .itemBox {
     margin-bottom: 27px;
     width: 48%;

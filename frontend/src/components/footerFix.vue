@@ -177,7 +177,7 @@
                                 >
                                     <div class="accordion-body">
                                         <a class="nav-link">Reviw</a>
-                                        <a class="nav-link">EVENT</a>
+                                        <a @click="Event" class="nav-link">EVENT</a>
                                         <a class="nav-link">문의하기</a>
                                         <a class="nav-link">안티에이징</a>
                                         <a class="nav-link">FAQ</a>
@@ -243,6 +243,9 @@ export default {
         },
         Ingredient() {
             this.$router.push('/ingredient');
+        },
+        Event() {
+            this.$router.push('/event');
         }
     }
 };
