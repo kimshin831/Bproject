@@ -129,7 +129,7 @@ export default {
         const fetchAirQualityData = async () => {
             try {
                 const airResponse = await fetch(
-                    'http://api.openweathermap.org/data/2.5/air_pollution?lat=37.5070431&lon=127.018956&appid=822e1d81a695655b411c939d26499c1f'
+                    'http://api.openweathermap.org/data/2.5/air_pollution?lat=37.5070431&lon=126.8902185&appid=822e1d81a695655b411c939d26499c1f'
                 );
                 const airData = await airResponse.json();
 

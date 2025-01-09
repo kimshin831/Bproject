@@ -15,10 +15,10 @@
         <ul>
             <li>1:1 문의</li>
             <li>취소/반품</li>
-            <li>날씨</li>
+            <li>공지사항</li>
             <li>배송문의</li>
             <li>상품문의</li>
-            <li>찾아오시는길</li>
+            <li>회사정보</li>
         </ul>
     </div>
     <div class="question">

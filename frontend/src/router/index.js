@@ -10,6 +10,7 @@ import OrderComplete from '../views/OrderComplete.vue';
 import ProductPage from '../views/ProductPage.vue';
 import Checkout from '../views/Checkout.vue';
 import Mypage from '../views/Mypage.vue';
+import CompanyProfile from '../views/CompanyProfile.vue';
 const routes = [
     {
         path: '/',
@@ -65,6 +66,11 @@ const routes = [
         path: '/mypage',
         name: 'Mypage',
         component: Mypage
+    },
+    {
+        path: '/companyprofile',
+        name: 'CompanyProfile',
+        component: CompanyProfile
     }
 ];
 

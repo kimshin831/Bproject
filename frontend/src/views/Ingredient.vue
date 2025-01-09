@@ -71,7 +71,7 @@
 </template>
 <script>
 import TopButton from '../components/TopButton.vue';
-import room from '../assets/js/room';
+import CategoryItem from '../assets/js/CategoryItem';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/swiper-bundle.css';
 
@@ -84,7 +84,7 @@ export default {
     },
     data() {
         return {
-            item: room,
+            item: CategoryItem,
             activeTab: 0,
             menuItems: [
                 { name: '어성초', content: '어성초는 삼백초과의 식물로 여드름같은 트러블에 좋습니다.' },
