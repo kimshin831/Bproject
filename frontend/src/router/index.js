@@ -9,6 +9,7 @@ import Ingredient from '../views/Ingredient.vue';
 import OrderComplete from '../views/OrderComplete.vue';
 import ProductPage from '../views/ProductPage.vue';
 import Checkout from '../views/Checkout.vue';
+import Mypage from '../views/Mypage.vue';
 const routes = [
     {
         path: '/',
@@ -59,6 +60,11 @@ const routes = [
         path: '/checkout',
         name: 'Checkout',
         component: Checkout
+    },
+    {
+        path: '/mypage',
+        name: 'Mypage',
+        component: Mypage
     }
 ];
 
