@@ -1,11 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Main from '../views/Main.vue';
-import footerFix from '../components/footerFix.vue';
 import Category from '../views/Category.vue';
 import Login from '../views/Login.vue';
 import Qna from '../views/Qna.vue';
-import Mypage from '../views/Mypage.vue';
-
+import Event from '../views/Event.vue';
+import ShoppingCart from '../views/ShoppingCart.vue';
+import Ingredient from '../views/Ingredient.vue';
+import OrderComplete from '../views/OrderComplete.vue';
+import ProductPage from '../views/ProductPage.vue';
+import Checkout from '../views/Checkout.vue';
 const routes = [
     {
         path: '/',
@@ -13,25 +16,9 @@ const routes = [
         component: Main
     },
     {
-        path: '/about',
-        name: 'about',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-    },
-    {
         path: '/event',
         name: 'Event',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "about" */ '../views/Event.vue')
-    },
-    {
-        path: '/footerfix',
-        name: 'footerFix',
-        component: footerFix
+        component: Event
     },
     {
         path: '/category',
@@ -49,9 +36,29 @@ const routes = [
         component: Qna
     },
     {
-        path: '/mypage',
-        name: 'Mypage',
-        component: Mypage
+        path: '/shoppingcart',
+        name: 'ShoppingCart',
+        component: ShoppingCart
+    },
+    {
+        path: '/ingredient',
+        name: 'Ingredient',
+        component: Ingredient
+    },
+    {
+        path: '/ordercomplete',
+        name: 'OrderComplete',
+        component: OrderComplete
+    },
+    {
+        path: '/product/:id',
+        name: 'ProductPage',
+        component: ProductPage
+    },
+    {
+        path: '/checkout',
+        name: 'Checkout',
+        component: Checkout
     }
 ];
 
