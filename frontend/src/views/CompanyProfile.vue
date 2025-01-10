@@ -6,11 +6,11 @@
             <div id="map"></div>
         </div>
         <div class="company">
-            <p>주소: 서울특별시 중구 예시 주소</p>
-            <p>대표번호: 02-1234-5678</p>
-            <p>대표자: 홍길동</p>
-            <p>휴대폰 번호: 010-1234-5678</p>
-            <p>이메일: example@company.com</p>
+            <p><span>주소</span> : 서울 구로구 새말로 97, 테크노마트/ 6층</p>
+            <p><span>대표</span> : B팀</p>
+            <p><span>대표번호</span> : 02-1234-5678</p>
+            <p><span>휴대폰 번호</span> : 010-1234-5678</p>
+            <p><span>이메일</span> : example@company.com</p>
         </div>
     </div>
 </template>
@@ -44,7 +44,7 @@ export default {
 
                     // 마커 정보 창
                     const infowindow = new kakao.maps.InfoWindow({
-                        content: '<div class="marker">회사 위치</div>' // 정보 창 내용
+                        content: '<div class="marker">본사 위치</div>' // 정보 창 내용
                     });
                     infowindow.open(map, marker);
                 });
@@ -58,7 +58,7 @@ export default {
 .map-container {
     width: 100%;
     margin: 0 auto;
-    padding: 10px 0;
+    padding-top: 20px;
 }
 #map {
     width: 350px;
@@ -71,5 +71,19 @@ export default {
     width: 150px;
     text-align: center;
     font-weight: 600;
+}
+
+.company {
+    font-size: 0.95rem;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.company p {
+    margin-bottom: 0.9rem;
+}
+
+.company > p span {
+    font-weight: bold;
 }
 </style>

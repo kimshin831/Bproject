@@ -4,9 +4,9 @@
         <div class="checkout-container">
             <!-- 배송지 정보 -->
             <div class="section">
-                <h2>배송지 정보 (필수)</h2>
+                <h2 class="Shipping">배송지 정보 <span>필수</span></h2>
                 <button class="address">신규 배송지 등록</button>
-                <p v-if="!deliveryRequest" class="error">배송시 요청사항 (필수)</p>
+                <h2 v-if="!deliveryRequest" class="Shipping">배송시 요청사항 <span>필수</span></h2>
                 <select v-model="deliveryRequest" class="dropdown">
                     <option disabled value="">요청사항 선택</option>
                     <option>문 앞에 놓아주세요</option>
@@ -16,7 +16,7 @@
             </div>
 
             <!-- 주문 상품 정보 -->
-            <div class="section" v-if="cart.length > 0">
+            <div class="section s1" v-if="cart.length > 0">
                 <h2>주문 상품 정보</h2>
                 <div class="product-info" v-for="item in cart" :key="item.id">
                     <div class="product-image">
@@ -24,8 +24,8 @@
                     </div>
                     <div class="product-details">
                         <p>NEDE</p>
-                        <p>{{ item.title }}</p>
-                        <p>수량 : {{ item.quantity }} 개</p>
+                        <p class="item_title">{{ item.title }}</p>
+                        <p>수량 : {{ item.quantity }}개</p>
                         <p>
                             <strong>{{ item.price.toLocaleString() }}원</strong>
                         </p>
@@ -34,9 +34,9 @@
             </div>
 
             <!-- 포인트 -->
-            <div class="section">
+            <div class="section s2">
                 <h2>포인트</h2>
-                <p>결제 금액의 50%까지 포인트 사용이 가능합니다.</p>
+                <p class="small">결제 금액의 50%까지 포인트 사용이 가능합니다.</p>
                 <div class="points">
                     <input
                         type="number"
@@ -55,33 +55,33 @@
             </div>
 
             <!-- 결제 금액 확인 -->
-            <div class="section">
+            <div class="section s3">
                 <h2>결제 금액 확인</h2>
                 <p>
-                    총 상품 금액: <strong>{{ totalPrice.toLocaleString() }} 원</strong>
+                    총 상품 금액: <strong>{{ totalPrice.toLocaleString() }}원</strong>
                 </p>
                 <p>
-                    포인트 사용: <strong>- {{ pointsUsed.toLocaleString() }} 원</strong>
+                    포인트 사용: <strong>- {{ pointsUsed.toLocaleString() }}원</strong>
                 </p>
                 <p>
-                    배송비: <strong>{{ shippingFee.toLocaleString() }} 원</strong>
+                    배송비: <strong>{{ shippingFee.toLocaleString() }}원</strong>
                 </p>
                 <p>
-                    <strong>총 결제 금액: {{ finalPrice.toLocaleString() }} 원</strong>
+                    <strong>총 결제 금액: {{ finalPrice.toLocaleString() }}원</strong>
                 </p>
             </div>
 
             <!-- 결제 수단 -->
-            <div class="section">
+            <div class="section s4">
                 <h2>결제 수단</h2>
                 <div class="payment-methods">
-                    <button class="btns">신용/체크카드</button>
-                    <button class="btns">실시간 계좌이체</button>
-                    <button class="btns">네이버 페이</button>
-                    <button class="btns">카카오 페이</button>
+                    <button class="btns bt">신용/체크카드</button>
+                    <button class="btns bt">실시간 계좌이체</button>
+                    <button class="btns bt">네이버 페이</button>
+                    <button class="btns bt">카카오 페이</button>
                 </div>
             </div>
-            <section class="section">
+            <section class="section s5">
                 <div class="checkbox-group">
                     <div>
                         <input type="checkbox" v-model="agreeTerms" id="agree-terms" />
@@ -89,11 +89,11 @@
                     </div>
                     <div>
                         <input type="checkbox" v-model="agreeOrderCheck" id="agree-order-check" />
-                        <label for="agree-order-check">(필수) 주문내용 확인 및 결제 동의</label>
+                        <label for="agree-order-check">주문내용 확인 및 결제 동의 <span>필수</span></label>
                     </div>
                     <div>
                         <input type="checkbox" v-model="agreePrivacy" id="agree-privacy" />
-                        <label for="agree-privacy">(필수) 개인정보 제공 제3자 제공 동의</label>
+                        <label for="agree-privacy">개인정보 제공 제3자 제공 동의 <span>필수</span></label>
                     </div>
                 </div>
             </section>
@@ -104,6 +104,7 @@
             </div>
         </div>
     </div>
+    <div class="margin"></div>
 </template>
 <script>
 import TopButton from '@/components/TopButton.vue';
@@ -176,46 +177,102 @@ export default {
 }
 
 .section {
-    margin-bottom: 20px;
+    margin-top: 30px;
+}
+
+.section.s1 {
+    border-top: 1.5px solid #6f6f6f;
+    border-bottom: 1.5px solid #6f6f6f;
+    padding: 20px 0;
+}
+
+.section.s2,
+.s3 {
+    border-bottom: 1.5px solid #6f6f6f;
+    padding-bottom: 20px;
+}
+
+.s4 {
+    border-bottom: 1.5px solid #6f6f6f;
+    padding-bottom: 30px;
 }
 
 .section h2 {
     font-size: 16px;
     font-weight: bold;
-    letter-spacing: -0.2px;
-    margin-bottom: 10px;
-    background: #ffbff6;
+    letter-spacing: -0.5px;
+    margin-bottom: 7px;
+}
+
+.small {
+    font-size: 14px;
+    margin-bottom: 3px;
 }
 
 .btns {
     display: inline-block;
-    margin: 5px 0;
-    padding: 8px 12px;
-    background: #999;
-    color: #fff;
-    border: none;
+    font-size: 13px;
+    padding: 5px;
+    margin-right: 5px;
+    color: #6f6f6f;
+    border: 0.7px solid #6f6f6f;
+    background: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 7px;
+    font-weight: bold;
 }
+
+.btns.bt {
+    width: 47%;
+    padding: 10px 0;
+    font-weight: bold;
+}
+
+.Shipping > span {
+    font-size: 0.75rem;
+    color: red;
+}
+
 .address {
     width: 100%;
-    padding: 8px;
-    margin-top: 10px;
+    padding: 7px;
+    margin-top: 3px;
+    margin-bottom: 30px;
+    background: none;
+    border-radius: 5px;
+    border: 1px solid #6f6f6f;
+    font: 14px;
+    color: #6f6f6f;
+    font-weight: bold;
 }
 .dropdown {
     width: 100%;
-    padding: 8px;
-    margin-top: 10px;
+    padding: 7px;
+    border-radius: 5px;
+    border: 1px solid #6f6f6f;
+    font: 14px;
+    color: #6f6f6f;
+    font-weight: bold;
 }
 
 .product-info {
     display: flex;
     align-items: center;
 }
+
+.item_title {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.product-info > .product-details > p > strong {
+    font-size: 1.15rem;
+}
+
 .product-image {
     width: 170px;
     height: 170px;
-    background-color: #999;
     margin-right: 10px;
 }
 .product-image img {
@@ -236,14 +293,35 @@ export default {
 
 .input {
     flex: 1;
-    padding: 8px;
+    padding: 3px 0 3px 7px;
+    margin-top: 7px;
     margin-right: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #6f6f6f;
     border-radius: 5px;
 }
 
 .checkbox {
     margin-top: 10px;
+}
+
+.checkbox > input {
+    margin-right: 5px;
+}
+
+.checkbox > label {
+    font-size: 0.9rem;
+}
+
+.checkbox-group > div > input {
+    margin-right: 5px;
+}
+
+.checkbox-group > div > label {
+    font-size: 0.9rem;
+}
+.checkbox-group > div > label span {
+    font-size: 0.75rem;
+    color: red;
 }
 
 .payment-methods .btn {
@@ -256,6 +334,15 @@ export default {
 .pay-button {
     width: 100%;
     padding: 8px;
-    margin-top: 10px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 5px;
+    background: #999;
+    color: white;
+    font-weight: bold;
+}
+
+.margin {
+    height: 25px;
 }
 </style>
