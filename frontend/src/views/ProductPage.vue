@@ -106,11 +106,12 @@ export default {
 
 .buttons button {
     border: none;
-    border-radius: 5px;
-    background: #a68151;
-    padding: 10px;
+    border-radius: 20px;
+    background-color: #acacac;
+    padding: 7px 15px;
     margin: 5px;
     color: white;
     font-weight: bold;
+    cursor: pointer;
 }
 </style>
