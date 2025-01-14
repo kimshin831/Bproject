@@ -2,9 +2,16 @@
     <TopButton title="마이페이지" />
     <div class="container">
         <div class="profile">
-            <img src="@/assets/img/profile.png" alt="?" />
-            <div class="title">야생동물을 구해주세요.</div>
-            <a class="login" @click="Login">로그인 &gt;</a>
+            <img src="https://via.placeholder.com/100" alt="?" />
+            <div class="title">
+                <!-- 로그인 상태에 따라 메시지 변경 -->
+                <template v-if="isLoggedIn"> {{ userName }}님 환영합니다. </template>
+                <template v-else> 야생동물을 구해주세요. </template>
+            </div>
+            <!-- 로그인 상태에 따라 버튼 변경 -->
+            <a class="login" @click="toggleLogin">
+                {{ isLoggedIn ? '로그아웃 >' : '로그인 >' }}
+            </a>
         </div>
         <div class="stats">
             <div>
@@ -91,10 +98,70 @@ export default {
     components: {
         TopButton
     },
+    data() {
+        return {
+            isLoggedIn: false, // 로그인 상태 여부
+            userName: '' // 로그인한 사용자 이름
+        };
+    },
     methods: {
         Login() {
             this.$router.push('/login');
+        },
+        async toggleLogin() {
+            if (this.isLoggedIn) {
+                // 로그아웃 요청
+                try {
+                    const response = await fetch('/api/auth/logout.php', {
+                        method: 'POST',
+                        credentials: 'include' // 쿠키 포함
+                    });
+                    const data = await response.json();
+                    console.log('Logout Response:', data); // 디버깅용
+
+                    if (data.status === 'success') {
+                        this.isLoggedIn = false;
+                        this.userName = '';
+                        alert('로그아웃되었습니다.');
+                    } else {
+                        alert(data.message || '로그아웃 실패');
+                    }
+                } catch (error) {
+                    console.error('로그아웃 요청 중 오류:', error);
+                    alert('로그아웃 요청 중 오류 발생');
+                }
+            } else {
+                // 로그인 페이지로 이동
+                this.$router.push('/login');
+            }
+        },
+        async checkLoginStatus() {
+            try {
+                const response = await fetch('/api/auth/check_login.php', {
+                    method: 'GET',
+                    credentials: 'include' // 쿠키 포함
+                });
+                console.log('Response Status:', response.status); // 디버깅용
+                const data = await response.json();
+                console.log('Response Data:', data); // 디버깅용
+
+                // 로그인 상태 확인 (데이터를 logged_in으로 판단)
+                if (data.logged_in) {
+                    this.isLoggedIn = true;
+                    this.userName = data.username;
+                } else {
+                    console.log('로그인되지 않음:', data);
+                    this.isLoggedIn = false;
+                    this.userName = '';
+                }
+            } catch (error) {
+                console.error('로그인 상태 확인 중 오류:', error);
+            }
         }
+    },
+    mounted() {
+        // 초기 로그인 상태 확인
+        this.checkLoginStatus();
     },
     setup() {
         // 반응형 데이터 선언

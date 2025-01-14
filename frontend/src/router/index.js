@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Main from '../views/Main.vue';
+import footerFix from '../components/footerFix.vue';
 import Category from '../views/Category.vue';
 import Login from '../views/Login.vue';
 import Qna from '../views/Qna.vue';
@@ -11,11 +12,19 @@ import ProductPage from '../views/ProductPage.vue';
 import Checkout from '../views/Checkout.vue';
 import Mypage from '../views/Mypage.vue';
 import CompanyProfile from '../views/CompanyProfile.vue';
+import Easylogin from '../views/Easylogin.vue';
+import Register from '../views/Register.vue';
+
 const routes = [
     {
         path: '/',
         name: 'Main',
         component: Main
+    },
+    {
+        path: '/footerfix',
+        name: 'footerFix',
+        component: footerFix
     },
     {
         path: '/event',
@@ -71,6 +80,16 @@ const routes = [
         path: '/companyprofile',
         name: 'CompanyProfile',
         component: CompanyProfile
+    },
+    {
+        path: '/easylogin',
+        name: 'Easylogin',
+        component: Easylogin
+    },
+    {
+        path: '/register',
+        name: 'Register',
+        component: Register
     }
 ];
 

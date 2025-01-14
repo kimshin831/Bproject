@@ -1,6 +1,7 @@
 <template>
     <div class="footerWrap">
         <ul class="nav justify-content-center">
+            <!-- 카테고리 버튼 -->
             <li class="nav-item">
                 <button
                     class="btn btn-primary"
@@ -13,16 +14,20 @@
                     <p>카테고리</p>
                 </button>
 
+                <!-- 오프캔버스 -->
                 <div
                     class="offcanvas offcanvas-start"
                     data-bs-scroll="true"
+                    data-bs-backdrop="false"
                     tabindex="-1"
                     id="offcanvasWithBothOptions"
                     aria-labelledby="offcanvasWithBothOptionsLabel"
                 >
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     <div class="offcanvas-header">
+                        <!-- 아코디언 메뉴 -->
                         <div class="accordion" id="accordionExample">
+                            <!-- BEST ITEM -->
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
                                     <button
@@ -42,7 +47,7 @@
                                     data-bs-parent="#accordionExample"
                                 >
                                     <div class="accordion-body">
-                                        <a class="nav-link">BEST ITEM</a>
+                                        <router-link class="nav-link" to="/best-item">BEST ITEM</router-link>
                                     </div>
                                 </div>
                             </div>
@@ -65,13 +70,27 @@
                                     data-bs-parent="#accordionExample"
                                 >
                                     <div class="accordion-body">
-                                        <a @click="Category" class="nav-link">비누/ 클랜징</a>
-                                        <a class="nav-link">마스크/ 팩/ 필링</a>
-                                        <a class="nav-link">스킨/토너/미스트</a>
-                                        <a class="nav-link">앰플/에센스/세럼</a>
-                                        <a class="nav-link">수분젤/에센셜</a>
-                                        <a class="nav-link">로션/크림</a>
-                                        <a class="nav-link">썬케어</a>
+                                        <router-link class="nav-link" to="/category" @click="offcanvershide"
+                                            >비누/ 클랜징</router-link
+                                        >
+                                        <router-link class="nav-link" to="/category/mask" @click="offcanvershide"
+                                            >마스크/ 팩/ 필링</router-link
+                                        >
+                                        <router-link class="nav-link" to="/category/toner" @click="offcanvershide"
+                                            >스킨/토너/미스트</router-link
+                                        >
+                                        <router-link class="nav-link" to="/category/serum" @click="offcanvershide"
+                                            >앰플/에센스/세럼</router-link
+                                        >
+                                        <router-link class="nav-link" to="/category/moisture" @click="offcanvershide"
+                                            >수분젤/에센셜</router-link
+                                        >
+                                        <router-link class="nav-link" to="/category/lotion" @click="offcanvershide"
+                                            >로션/크림</router-link
+                                        >
+                                        <router-link class="nav-link" to="/category/suncare" @click="offcanvershide"
+                                            >썬케어</router-link
+                                        >
                                     </div>
                                 </div>
                             </div>
@@ -122,11 +141,24 @@
                                     data-bs-parent="#accordionExample"
                                 >
                                     <div class="accordion-body">
-                                        <a class="nav-link" @click="Ingredient">어성초</a>
-                                        <a class="nav-link">콜라겐</a>
-                                        <a class="nav-link">히알루론산</a>
-                                        <a class="nav-link">판테놀</a>
-                                        <a class="nav-link">레티놀</a>
+                                        <router-link class="nav-link" to="/ingredient" @click="offcanvershide"
+                                            >어성초</router-link
+                                        >
+                                        <router-link class="nav-link" to="/ingredient/collagen" @click="offcanvershide"
+                                            >콜라겐</router-link
+                                        >
+                                        <router-link
+                                            class="nav-link"
+                                            to="/ingredient/hyaluronic"
+                                            @click="offcanvershide"
+                                            >히알루론산</router-link
+                                        >
+                                        <router-link class="nav-link" to="/ingredient/panthenol" @click="offcanvershide"
+                                            >판테놀</router-link
+                                        >
+                                        <router-link class="nav-link" to="/ingredient/retinol" @click="offcanvershide"
+                                            >레티놀</router-link
+                                        >
                                     </div>
                                 </div>
                             </div>
@@ -190,63 +222,59 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link">
-                    <div class="nav_icon" @click="Qna">
+                <router-link class="nav-link" to="/qna" @click="offcanvershide">
+                    <div class="nav_icon">
                         <img src="../assets/img/qna.svg" alt="qna" />
                         <p>Q&A</p>
                     </div>
-                </a>
+                </router-link>
             </li>
             <li class="nav-item">
-                <a class="nav-link">
-                    <div class="nav_icon" @click="Main">
+                <router-link class="nav-link" to="/" @click="offcanvershide">
+                    <div class="nav_icon">
                         <img src="../assets/img/NEDE_logo.png" alt="logo" class="nav_logo" />
                     </div>
-                </a>
+                </router-link>
             </li>
             <li class="nav-item">
-                <a class="nav-link">
+                <router-link class="nav-link" to="/real-review" @click="offcanvershide">
                     <div class="nav_icon">
                         <img src="../assets/img/real.svg" alt="review" />
                         <p>리얼리뷰</p>
                     </div>
-                </a>
+                </router-link>
             </li>
             <li class="nav-item">
-                <a class="nav-link" @click="Mypage">
+                <router-link class="nav-link" to="/mypage" @click="offcanvershide">
                     <div class="nav_icon">
-                        <img src="../assets/img/user.svg" alt="qna" />
+                        <img src="../assets/img/user.svg" alt="mypage" />
                         <p>마이페이지</p>
                     </div>
-                </a>
+                </router-link>
             </li>
         </ul>
     </div>
 </template>
 <script>
+import { useRouter } from 'vue-router';
+
 export default {
     name: 'footerFix',
-    methods: {
-        Category() {
-            this.$router.replace('/category').then(() => {
-                window.location.reload(); // 새로고침 강제 수행
-            });
-        },
-        Mypage() {
-            this.$router.push('/mypage');
-        },
-        Main() {
-            this.$router.push('/');
-        },
-        Qna() {
-            this.$router.push('/qna');
-        },
-        Ingredient() {
-            this.$router.push('/ingredient');
-        },
-        Event() {
-            this.$router.push('/event');
-        }
+    setup() {
+        const router = useRouter();
+
+        // 오프캔버스 닫기 메서드
+        const offcanvershide = () => {
+            const offcanvasElement = document.getElementById('offcanvasWithBothOptions');
+            const offcanvasInstance = bootstrap.Offcanvas.getInstance(offcanvasElement);
+            if (offcanvasInstance) {
+                offcanvasInstance.hide();
+            }
+        };
+
+        return {
+            offcanvershide
+        };
     }
 };
 </script>
