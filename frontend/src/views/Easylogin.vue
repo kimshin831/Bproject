@@ -52,7 +52,7 @@ export default {
     mounted() {
         // 카카오 SDK 초기화
         if (!window.Kakao.isInitialized()) {
-            window.Kakao.init('12ecc1a13dbe01f4abcde8e95d9657af');
+            window.Kakao.init('b65d155bd8d1bfb900dca929ae8afabc');
         }
 
         // 네이버 로그인 버튼 초기화
@@ -121,8 +121,8 @@ export default {
                 return;
             }
             this.naverLogin = new window.naver.LoginWithNaverId({
-                clientId: 'VumMcLkVDfXDMqskUBYa',
-                callbackUrl: 'http://nede.dothome.co.kr/easylogin',
+                clientId: 'MyEYpin_VSCD218l6SHu',
+                callbackUrl: 'http://green609b.dothome.co.kr/easylogin',
                 isPopup: false,
                 loginButton: { color: 'green', type: 3, height: 60 }
             });
@@ -154,7 +154,7 @@ export default {
                 return;
             }
             // 네이버 로그아웃 URL
-            const logoutUrl = `https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=VumMcLkVDfXDMqskUBYa&client_secret=k2DOtHw9Yf&access_token=${this.naverAccessToken}&service_provider=NAVER`;
+            const logoutUrl = `https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=MyEYpin_VSCD218l6SHu&client_secret=kkCdziVPyr&access_token=${this.naverAccessToken}&service_provider=NAVER`;
 
             // iframe을 사용하여 로그아웃 요청
             const iframe = document.createElement('iframe');

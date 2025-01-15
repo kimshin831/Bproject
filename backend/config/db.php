@@ -2,9 +2,9 @@
 <?php
 // 데이터베이스 연결 설정
 $host = 'localhost';
-$db_name = 'nede';
-$username = 'nede';
-$password = 'dudtls1004!!';
+$db_name = 'green609b';
+$username = 'green609b';
+$password = 'green609!';
 
 // PDO를 사용하여 데이터베이스 연결
 try {

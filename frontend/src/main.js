@@ -22,4 +22,4 @@ createApp(App)
     .use(BootstrapVue3)
     .mount('#app');
 
-window.Kakao.init('3bd79f7e9158fd56823269331562c024');
+window.Kakao.init('b65d155bd8d1bfb900dca929ae8afabc');

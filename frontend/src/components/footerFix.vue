@@ -237,7 +237,7 @@
                 </router-link>
             </li>
             <li class="nav-item">
-                <router-link class="nav-link" to="/real-review" @click="offcanvershide">
+                <router-link class="nav-link" to="/reviews" @click="offcanvershide">
                     <div class="nav_icon">
                         <img src="../assets/img/real.svg" alt="review" />
                         <p>리얼리뷰</p>
