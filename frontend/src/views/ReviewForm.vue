@@ -52,7 +52,7 @@ export default {
                 const result = await response.json();
 
                 if (result.logged_in) {
-                    this.author = result.user_id; // 로그인된 사용자 ID 설정
+                    this.author = result.username; // 로그인된 사용자 ID 설정
                 } else {
                     alert('로그인 상태가 아닙니다. 로그인 페이지로 이동합니다.');
                     this.$router.push('/login');

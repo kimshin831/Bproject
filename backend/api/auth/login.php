@@ -49,15 +49,15 @@ if ($result->num_rows === 1) {
     // 비밀번호 검증
     if (password_verify($password, $user['password'])) {
         // 세션에 사용자 정보 저장
-        $_SESSION['username'] = $user['username'];
-        $_SESSION['name'] = $user['name'];
+        $_SESSION['user_id'] = $user['user_id']; // 데이터베이스에서 가져온 ID
+        $_SESSION['username'] = $user['username']; // 데이터베이스에서 가져온 사용자 이름
 
         http_response_code(200); // 성공
         echo json_encode([
             "status" => "success",
             "message" => "로그인 성공!",
-            "username" => $user['username'],
-            "name" => $user['name']
+            "user_id" => $user['user_id'],
+            "username" => $user['username']
         ]);
     } else {
         http_response_code(401); // 인증 실패

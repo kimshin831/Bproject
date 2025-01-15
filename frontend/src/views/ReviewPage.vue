@@ -3,7 +3,7 @@
         <TopButton title="상세리뷰" />
         <div v-if="isLoading">리뷰를 불러오는 중...</div>
         <div v-else class="review-container">
-            <div class="buttons">
+            <div class="buttons" v-if="isOwner">
                 <button type="button" @click="navigateToEdit">수정</button>
                 <button type="button" @click="deleteReview">삭제</button>
             </div>
@@ -28,13 +28,15 @@ export default {
     data() {
         return {
             review: {}, // 리뷰 데이터 저장
+            loggedInUser: null, // 로그인한 사용자 ID
+            isOwner: false, // 작성자 여부 확인
             isLoading: true // 로딩 상태
         };
     },
     methods: {
         // 리뷰 데이터 가져오기
         async fetchReview() {
-            this.isLoading = true; // 로딩 시작
+            this.isLoading = true;
             const reviewId = this.$route.params.id; // URL 파라미터에서 리뷰 ID 가져오기
             try {
                 const response = await fetch(
@@ -45,11 +47,32 @@ export default {
                 }
                 const data = await response.json();
                 this.review = data;
+
+                // 작성자와 로그인 사용자 비교
+                this.isOwner = this.review.username === this.loggedInUser;
             } catch (error) {
                 console.error('리뷰 데이터를 가져오는 중 오류 발생:', error);
                 alert('리뷰를 가져오는 데 실패했습니다. 다시 시도해주세요.');
             } finally {
-                this.isLoading = false; // 로딩 종료
+                this.isLoading = false;
+            }
+        },
+        // 로그인한 사용자 정보 가져오기
+        async fetchLoggedInUser() {
+            try {
+                const response = await fetch('http://green609b.dothome.co.kr/api/auth/check_login.php', {
+                    method: 'GET',
+                    credentials: 'include' // 세션 쿠키 포함
+                });
+                const result = await response.json();
+                if (result.logged_in) {
+                    this.loggedInUser = result.username; // 로그인된 사용자 ID 저장
+                    console.log('Logged-in user ID:', this.loggedInUser); // 디버깅 로그
+                } else {
+                    this.loggedInUser = null;
+                }
+            } catch (error) {
+                console.error('로그인 사용자 정보를 가져오는 중 오류 발생:', error);
             }
         },
         // 수정 페이지로 이동
@@ -76,9 +99,9 @@ export default {
             }
         }
     },
-    mounted() {
-        const reviewId = this.$route.params.id; // 동적 라우팅으로 전달된 ID 사용
-        this.fetchReview(reviewId);
+    async mounted() {
+        await this.fetchLoggedInUser(); // 로그인한 사용자 정보 가져오기
+        await this.fetchReview(); // 리뷰 데이터 가져오기
     }
 };
 </script>

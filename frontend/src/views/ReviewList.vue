@@ -3,6 +3,7 @@
         <TopButton title="리얼리뷰" />
         <div v-if="isLoading">리뷰를 불러오는 중...</div>
         <div v-else>
+            <button type="button" @click="navigateToCreate">리뷰작성하기</button>
             <!-- 리뷰 목록 -->
             <div class="contents">
                 <div
@@ -21,7 +22,6 @@
                         <p>아이디 : {{ review.username || '익명' }}</p>
                     </div>
                 </div>
-                <button type="button" @click="navigateToCreate">리뷰작성하기</button>
             </div>
         </div>
     </div>

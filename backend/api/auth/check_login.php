@@ -22,13 +22,13 @@ try {
     error_log("Session Data: " . print_r($_SESSION, true));
 
     // 로그인 상태 확인
-    if (isset($_SESSION['username']) && isset($_SESSION['name'])) {
+    if (isset($_SESSION['user_id']) && isset($_SESSION['username'])) {
         // 로그인된 사용자
         http_response_code(200);
         echo json_encode([
             'logged_in' => true,
-            'user_id' => $_SESSION['username'],
-            'username' => $_SESSION['name']
+            'user_id' => $_SESSION['user_id'],
+            'username' => $_SESSION['username']
         ]);
     } else {
         // 로그인되지 않은 사용자

@@ -17,6 +17,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
+    if ($review['username'] !== $loggedInUser) {
+        http_response_code(403);
+        echo json_encode(["status" => "error", "message" => "수정 권한이 없습니다."]);
+        exit;
+    }
+    
     try {
         // 리뷰의 이미지 경로 가져오기
         $stmt = $conn->prepare("SELECT image_path FROM reviews WHERE user_id = ?");

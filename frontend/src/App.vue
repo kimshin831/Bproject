@@ -21,7 +21,7 @@ export default {
             // 컴포넌트가 DOM에 마운트된 후 실행
             setTimeout(() => {
                 showSplash.value = false;
-            }, 3000);
+            }, 2000);
         });
         return {
             showSplash

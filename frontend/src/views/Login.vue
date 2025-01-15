@@ -61,10 +61,11 @@ export default {
 
             this.loading = true;
             try {
-                const response = await fetch('/api/auth/login.php', {
+                const response = await fetch('http://green609b.dothome.co.kr/api/auth/login.php', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        credentials: 'include'
                     },
                     body: JSON.stringify(this.form)
                 });
