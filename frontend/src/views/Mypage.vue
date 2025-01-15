@@ -1,8 +1,8 @@
 <template>
-    <TopButton title="마이페이지" />
     <div class="container">
+        <TopButton title="마이페이지" />
         <div class="profile">
-            <img src="https://via.placeholder.com/100" alt="?" />
+            <img src="@/assets/img/user.svg" alt="user" />
             <div class="title">
                 <!-- 로그인 상태에 따라 메시지 변경 -->
                 <template v-if="isLoggedIn"> {{ userName }}님 환영합니다. </template>
@@ -16,38 +16,38 @@
         <div class="stats">
             <div>
                 <a class="link point">
-                    <strong>0P</strong>
                     포인트
+                    <strong>0P</strong>
                 </a>
             </div>
             <div>
                 <a class="link coupon">
-                    <strong>0장</strong>
                     쿠폰
+                    <strong>0장</strong>
                 </a>
             </div>
             <div>
                 <a class="link order">
-                    <strong>0</strong>
                     주문내역
+                    <strong>0</strong>
                 </a>
             </div>
             <div>
                 <a class="link delivery">
-                    <strong>0</strong>
                     배송
+                    <strong>0</strong>
                 </a>
             </div>
             <div>
                 <a class="link evaluation">
-                    <strong>0</strong>
                     나의 평가
+                    <strong>0</strong>
                 </a>
             </div>
             <div>
                 <a class="link inquiry">
-                    <strong>0</strong>
                     문의
+                    <strong>0</strong>
                 </a>
             </div>
         </div>
@@ -71,12 +71,13 @@
                 <div class="weatherBox-lt">
                     <div><img :src="weatherIcon" :alt="weatherIcon" /></div>
                     <div>
-                        <p>{{ weather.temp }}</p>
+                        <p>{{ weather.temp }}º</p>
                     </div>
                 </div>
                 <div class="weatherBox-rt">
                     <p>
-                        <span>최고 : {{ weather.temp_max }} ℃ </span><span>최저: {{ weather.temp_min }} ℃</span>
+                        최고ㅣ{{ weather.temp_max }} ℃ <br />
+                        최저ㅣ{{ weather.temp_min }} ℃
                     </p>
                     <p>
                         미세먼지 <span :style="{ color: airConditionColor }">{{ airCondition }}</span>
@@ -88,6 +89,7 @@
             </div>
         </div>
     </div>
+    <div class="margin"></div>
 </template>
 <script>
 import TopButton from '@/components/TopButton.vue';
@@ -238,36 +240,31 @@ export default {
 };
 </script>
 <style scoped>
-.link {
-    cursor: pointer;
-    text-decoration: none;
-    color: #000;
-}
 .container {
-    margin-top: 25px;
     text-align: center;
 }
 
 .profile {
     height: 100px;
-    margin-bottom: 20px;
-    line-height: 17px;
+    margin-top: 25px;
+    line-height: 2rem;
 }
 
 .profile img {
     width: 85px;
     height: 85px;
     float: left;
-    object-fit: scale-down;
+    object-fit: contain;
+    padding-top: 11px;
     border-radius: 50%;
     border: 1px solid #000;
-    margin-right: 10px;
+    margin: 0 15px 0 10px;
 }
 
 .profile .title {
     float: left;
-    margin: 10px 0;
-    font-size: 22px;
+    margin-top: 13px;
+    font-size: 1.3rem;
     font-weight: bold;
     color: #555;
     line-height: 30px;
@@ -286,16 +283,27 @@ export default {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin: 30px 0;
+    gap: 3px;
+    margin: 10px 0 20px 0;
 }
 
 .stats div {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 10px;
-    font-size: 14px;
-    background: #f5f5f5;
+    padding: 5px;
+    font-size: 0.9rem;
+}
+
+.link {
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+}
+
+.stats div:nth-child(3n-1) {
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+}
+.stats div:nth-child(-n + 3) {
+    border-bottom: 1px solid #000;
 }
 
 .stats div strong {
@@ -303,40 +311,65 @@ export default {
     font-size: 20px;
     margin-bottom: 5px;
 }
+
+.section {
+    width: 100%;
+    text-align: left;
+}
+
+.section ul {
+    list-style: none;
+    font: 0.9rem;
+    font-weight: 700;
+    color: #777;
+    line-height: 2rem;
+    margin-bottom: 20px;
+    letter-spacing: -0.07rem;
+    padding-left: 20px;
+}
+
+.section ul li {
+    font-size: 1.1rem;
+    color: #000;
+}
+
+/* 날씨 */
+
 .weather-container {
     width: 100%;
     margin: 0 auto;
-    padding: 10px 0;
 }
-/* 날씨 API */
-.weatherBox {
-    margin: 0 auto;
-    width: 350px;
-    height: 70px;
-    background: #999;
-    display: flex;
-    justify-content: left;
-}
-.weatherBox-lt {
-    display: flex;
-}
+
 .weatherBox-lt div {
-    width: 70px;
-    height: 100%;
-}
-.weatherBox-lt img {
     display: block;
-    width: 70px;
-    height: 70px;
+    float: left;
 }
-.weatherBox-lt div p {
-    font-size: 1.5em;
-    line-height: 70px;
+
+.weatherBox-lt img {
+    float: left;
+    width: 60px;
+}
+
+.weatherBox-lt p {
+    font-size: 1.3rem;
+    line-height: 60px;
     font-weight: 700;
 }
+
+.weatherBox-rt {
+    float: right;
+    margin: 7px 10px;
+}
+
 .weatherBox-rt p {
-    font-size: 0.9em;
-    margin: 0;
+    float: left;
+    font-size: 0.9rem;
+    text-align: left;
     font-weight: 600;
+    margin-left: 7px;
+}
+
+.margin {
+    height: 77px;
 }
 </style>

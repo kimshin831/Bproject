@@ -47,7 +47,7 @@
                                     data-bs-parent="#accordionExample"
                                 >
                                     <div class="accordion-body">
-                                        <router-link class="nav-link">BEST ITEM</router-link>
+                                        <router-link class="nav-link" to="/best-item">BEST ITEM</router-link>
                                     </div>
                                 </div>
                             </div>
@@ -73,22 +73,22 @@
                                         <router-link class="nav-link" to="/category" @click="offcanvershide"
                                             >비누/ 클랜징</router-link
                                         >
-                                        <router-link class="nav-link" to="/category" @click="offcanvershide"
+                                        <router-link class="nav-link" to="/category/mask" @click="offcanvershide"
                                             >마스크/ 팩/ 필링</router-link
                                         >
-                                        <router-link class="nav-link" to="/category" @click="offcanvershide"
+                                        <router-link class="nav-link" to="/category/toner" @click="offcanvershide"
                                             >스킨/토너/미스트</router-link
                                         >
-                                        <router-link class="nav-link" to="/category" @click="offcanvershide"
+                                        <router-link class="nav-link" to="/category/serum" @click="offcanvershide"
                                             >앰플/에센스/세럼</router-link
                                         >
-                                        <router-link class="nav-link" to="/category" @click="offcanvershide"
+                                        <router-link class="nav-link" to="/category/moisture" @click="offcanvershide"
                                             >수분젤/에센셜</router-link
                                         >
-                                        <router-link class="nav-link" to="/category" @click="offcanvershide"
+                                        <router-link class="nav-link" to="/category/lotion" @click="offcanvershide"
                                             >로션/크림</router-link
                                         >
-                                        <router-link class="nav-link" to="/category" @click="offcanvershide"
+                                        <router-link class="nav-link" to="/category/suncare" @click="offcanvershide"
                                             >썬케어</router-link
                                         >
                                     </div>
@@ -144,7 +144,7 @@
                                         <router-link class="nav-link" to="/ingredient" @click="offcanvershide"
                                             >어성초</router-link
                                         >
-                                        <router-link class="nav-link" to="/ingredient" @click="offcanvershide"
+                                        <router-link class="nav-link" to="/ingredient/collagen" @click="offcanvershide"
                                             >콜라겐</router-link
                                         >
                                         <router-link
@@ -153,10 +153,10 @@
                                             @click="offcanvershide"
                                             >히알루론산</router-link
                                         >
-                                        <router-link class="nav-link" to="/ingredient" @click="offcanvershide"
+                                        <router-link class="nav-link" to="/ingredient/panthenol" @click="offcanvershide"
                                             >판테놀</router-link
                                         >
-                                        <router-link class="nav-link" to="/ingredient" @click="offcanvershide"
+                                        <router-link class="nav-link" to="/ingredient/retinol" @click="offcanvershide"
                                             >레티놀</router-link
                                         >
                                     </div>
@@ -291,6 +291,7 @@ a {
     bottom: 0;
     background-color: #fff;
     z-index: 1000;
+    box-shadow: 1px 1px 1px 1px gray;
 }
 .nav.justify-content-center {
     width: 100%;
