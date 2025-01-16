@@ -257,7 +257,8 @@ button.dropdown-item:root {
 }
 .itemBox .itemText .item_price {
     margin-top: 5px;
-    font-size: 0.9em;
+    font-size: 1em;
+    font-weight: 500;
 }
 
 .itemBox .itemText .item_price::after {

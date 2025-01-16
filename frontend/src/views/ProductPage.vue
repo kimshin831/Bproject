@@ -126,12 +126,39 @@ export default {
 }
 .itemBox .itemText .item_price {
     margin-top: 22px;
-    font-size: 1.1em;
+    font-size: 1.3em;
+    display: block;
+    float: left;
+    margin-right: 10px;
+}
+
+.numBox {
+    margin-top: 20px;
+}
+
+.numBox button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    background: none;
+    margin: 0 7px;
+    font-size: 1.2rem;
+    text-align: center;
+    line-height: 0px;
+}
+
+.numBox span {
+    font-size: 1.3rem;
+}
+
+.numBox button:hover {
+    background: #ccc;
 }
 
 .buttons {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 70px;
 }
 
 .buttons button {
