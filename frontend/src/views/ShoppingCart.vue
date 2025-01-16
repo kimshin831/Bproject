@@ -179,7 +179,10 @@ export default {
 }
 
 .itemName {
+    font-weight: bold;
+    font-size: 1.1rem;
     letter-spacing: -1px;
+    margin-bottom: 20px;
 }
 
 .itemName input {
@@ -217,7 +220,6 @@ export default {
     margin: 5px;
     margin-bottom: 7px;
     text-align: left;
-    float: left;
 }
 
 .itemOptions p:first-child {
@@ -226,19 +228,19 @@ export default {
 }
 
 .itemOptions .numBox {
-    width: 50%;
-    margin-top: 5px;
-    float: left;
-    line-height: 25px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 170px;
+    margin-top: 10px;
+    padding: 3px 5px;
     background: #ececec;
     text-align: left;
-    padding: 5px 10px 0 0;
     border-radius: 3px;
 }
 
 .itemOptions .numBox p {
     font-size: 0.95rem;
-    margin-left: 13px;
 }
 
 .numBox button {

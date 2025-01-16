@@ -1,26 +1,29 @@
 <template>
-    <div>
-        <TopButton :title="isEditMode ? '리뷰 수정' : '리뷰 작성'" />
-        <form @submit.prevent="handleSubmit" enctype="multipart/form-data">
-            <div>
-                <label for="author">작성자 아이디 : </label>
-                <input v-model="author" id="author" placeholder="작성자 아이디" readonly />
-            </div>
-            <div>
-                <label for="title">화장품명 : </label>
-                <input v-model="title" id="title" placeholder="리뷰 제목" required />
-            </div>
-            <div>
-                <label for="image">사진 첨부하기 : </label>
-                <input type="file" id="image" @change="handleFileUpload" accept="image/*" />
-            </div>
-            <div>
-                <label for="content">내용 : </label>
-                <textarea v-model="content" id="content" placeholder="리뷰 내용을 입력하세요" required></textarea>
-            </div>
-            <button type="submit">{{ isEditMode ? '리뷰 수정' : '리뷰 등록' }}</button>
-        </form>
+    <div class="container">
+        <div>
+            <TopButton :title="isEditMode ? '리뷰 수정' : '리뷰 작성'" />
+            <form @submit.prevent="handleSubmit" enctype="multipart/form-data">
+                <div>
+                    <label for="title">제목ㅣ</label>
+                    <input v-model="title" id="title" placeholder="리뷰 제목" required />
+                </div>
+                <div>
+                    <label for="author">작성자ㅣ</label>
+                    <input v-model="author" id="author" placeholder="작성자 아이디" readonly />
+                </div>
+                <div>
+                    <label for="image">사진 첨부하기ㅣ</label>
+                    <input type="file" id="image" @change="handleFileUpload" accept="image/*" />
+                </div>
+                <div>
+                    <label for="content">내용</label>
+                    <textarea v-model="content" id="content" placeholder="리뷰 내용을 입력하세요" required></textarea>
+                </div>
+                <button type="submit">{{ isEditMode ? '리뷰 수정' : '리뷰 등록' }}</button>
+            </form>
+        </div>
     </div>
+    <div class="margin"></div>
 </template>
 
 <script>
@@ -128,14 +131,21 @@ export default {
 <style scoped>
 form {
     width: 90%;
+    height: 83vh;
     max-width: 500px;
     margin: 0 auto; /* 가운데 정렬 */
+    margin-top: 20px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    background-color: #f9f9f9;
+    background-color: #fdfdfd;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     text-align: left;
+}
+
+input {
+    border: none;
+    background: none;
 }
 
 /* 라벨 스타일 */
@@ -143,8 +153,14 @@ label {
     display: inline-block;
     margin-bottom: 5px;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 1rem;
+    line-height: 1.8rem;
     color: #333;
+}
+
+input#image {
+    width: 60%;
+    border: none;
 }
 
 /* 입력 필드 스타일 */
@@ -156,7 +172,7 @@ textarea {
     margin-bottom: 15px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 0.85rem;
     color: #555;
 }
 /* 입력 필드 포커스 스타일 */
@@ -169,7 +185,7 @@ textarea:focus {
 
 /* 텍스트 에어리어 높이 조정 */
 textarea {
-    height: 150px;
+    height: 56vh;
     resize: vertical;
 }
 
@@ -181,17 +197,22 @@ button {
     background-color: #999;
     color: white;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 7px;
+    font-size: 1rem;
+    font-weight: bold;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #333;
+    background-color: #666;
 }
 
 /* 이미지 파일 선택 스타일 */
 input[type='file'] {
     padding: 3px;
+}
+
+.margin {
+    height: 63px;
 }
 </style>

@@ -235,6 +235,11 @@ export default {
     font-weight: bold;
 }
 
+.btns:hover {
+    background: #555;
+    color: #fff;
+}
+
 .btns.bt {
     width: 47%;
     padding: 10px 0;
@@ -352,6 +357,10 @@ export default {
     background: #999;
     color: white;
     font-weight: bold;
+}
+
+.pay-button:hover {
+    background: #555;
 }
 
 .margin {

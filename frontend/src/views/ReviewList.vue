@@ -19,7 +19,7 @@
                         <p class="title">{{ review.title }}</p>
                         <p class="content_r">{{ review.content }}</p>
                         <p class="score"><img src="@/assets/img/leaf.svg" alt="score" /> 4.3점</p>
-                        <p>아이디ㅣ{{ review.username || '익명' }}</p>
+                        <p>작성자ㅣ{{ review.username || '익명' }}</p>
                     </div>
                 </div>
             </div>
@@ -87,7 +87,10 @@ button {
     float: right;
     margin: 20px 7px 0 7px;
     font-size: 0.85rem;
-    border: 1.5px solid #ccc;
+    background: #666;
+    padding: 7px 12px 7px 12px;
+    color: #fff;
+    font-weight: bold;
     box-sizing: border-box;
     border-radius: 5px;
     letter-spacing: -0.1px;

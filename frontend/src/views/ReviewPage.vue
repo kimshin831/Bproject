@@ -8,7 +8,7 @@
                 <img :src="review.image_path" alt="리뷰이미지" v-if="review.image_path" />
             </div>
             <div class="review-content">
-                <p class="id">아이디ㅣ{{ review.username }}</p>
+                <p class="id">작성자ㅣ{{ review.username }}</p>
                 <p class="score"><img src="@/assets/img/leaf.svg" alt="score" /> 4.3점</p>
                 <p class="content">{{ review.content }}</p>
             </div>
@@ -20,8 +20,12 @@
                     </button>
                 </div>
                 <div class="buttons" v-if="isOwner">
-                    <button type="button" @click="navigateToEdit">수정</button>ㅣ
-                    <button type="button" @click="deleteReview">삭제</button>
+                    <button type="button" @click="navigateToEdit">수정</button>ㅣ<button
+                        type="button"
+                        @click="deleteReview"
+                    >
+                        삭제
+                    </button>
                 </div>
             </div>
         </div>
@@ -172,11 +176,13 @@ export default {
 
 .content {
     width: 100%;
-    min-height: 150px;
+    height: 140px;
     text-align: justify;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
-    padding: 15px 0;
+    margin-bottom: 10px;
+    padding: 12px 0;
+    overflow-y: auto;
 }
 .review-bottom {
     display: flex;
@@ -189,18 +195,19 @@ export default {
     font-size: 0.9em;
     display: flex;
     align-items: center;
-    gap: 3px;
+    letter-spacing: -0.5px;
 }
 .buttons button {
     border: none;
     background-color: #fff;
+    box-sizing: border-box;
     font-size: 0.9em;
 }
 .buttons button:hover {
-    text-decoration: underline;
+    font-weight: bold;
 }
 .bottom-Btn:hover {
-    text-decoration: underline;
+    font-weight: bold;
 }
 .margin {
     height: 63px;

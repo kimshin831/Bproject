@@ -150,15 +150,15 @@ export default {
 
 .container .title h1 {
     width: 90%;
-    margin: 0 auto;
+    margin-left: 10px;
     text-align: left;
     font-size: 35px;
     font-weight: bold;
 }
 
 .container .search {
-    width: 90%;
-    margin: 0 auto;
+    width: 100%;
+    margin-left: 10px;
     position: relative;
 }
 

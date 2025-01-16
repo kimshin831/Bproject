@@ -381,7 +381,7 @@ export default {
 
 .profile {
     height: 100px;
-    margin-top: 25px;
+    margin-top: 37px;
     line-height: 2rem;
 }
 
