@@ -16,15 +16,16 @@
                         <img :src="review.image_path" alt="리뷰 이미지" v-if="review.image_path" />
                     </div>
                     <div class="reviewContent">
-                        <p>상품명 : {{ review.title }}</p>
-                        <p><img src="@/assets/img/leaf.svg" alt="score" /> 4.3점</p>
-                        <p>{{ review.content }}</p>
-                        <p>아이디 : {{ review.username || '익명' }}</p>
+                        <p class="title">{{ review.title }}</p>
+                        <p class="content_r">{{ review.content }}</p>
+                        <p class="score"><img src="@/assets/img/leaf.svg" alt="score" /> 4.3점</p>
+                        <p>아이디ㅣ{{ review.username || '익명' }}</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="margin"></div>
 </template>
 
 <script>
@@ -79,12 +80,27 @@ export default {
     width: 100%;
     margin: 0 auto;
 }
+
+button {
+    border: none;
+    background: none;
+    float: right;
+    margin: 20px 7px 0 7px;
+    font-size: 0.85rem;
+    border: 1.5px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 5px;
+    letter-spacing: -0.1px;
+}
+
 .reviewItem {
-    width: 90%;
+    width: 98%;
+    padding: 15px 0;
     display: flex;
-    margin: 20px;
+    align-items: center;
     cursor: pointer;
     transition: transform 0.2s;
+    border-bottom: 1px solid #ccc;
 }
 .reviewItem:hover {
     transform: scale(1.02);
@@ -98,11 +114,49 @@ export default {
     display: block;
     width: 125px;
     height: 150px;
+    object-fit: cover;
 }
 .reviewContent {
+    width: 100%;
+    float: left;
     text-align: left;
 }
 .reviewContent p {
     margin: 0;
+    padding-right: 20px;
+    font-size: 0.85rem;
+}
+
+p.title {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 2rem;
+}
+
+p.content_r {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.85rem;
+    line-height: 1.2rem;
+}
+
+.score img {
+    margin-right: 3px;
+    filter: invert(10%) sepia(89%) saturate(6058%) hue-rotate(83deg) brightness(108%) contrast(86%);
+}
+
+p.score {
+    font-size: 0.9rem;
+    line-height: 2.5rem;
+}
+
+.margin {
+    height: 63px;
 }
 </style>

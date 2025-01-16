@@ -66,6 +66,7 @@
                 <li>설정</li>
             </ul>
         </div>
+        <div class="weather">날씨</div>
         <div class="weather-container">
             <div class="weatherBox" v-if="weather && weatherIcon">
                 <div class="weatherBox-lt">
@@ -89,7 +90,6 @@
             </div>
         </div>
     </div>
-    <div class="margin"></div>
 </template>
 <script>
 import TopButton from '@/components/TopButton.vue';
@@ -271,7 +271,9 @@ export default {
 }
 
 .login {
+    width: 60%;
     float: left;
+    text-align: left;
     font-size: 1.1rem;
     text-decoration: none;
     color: #333;
@@ -335,8 +337,20 @@ export default {
 
 /* 날씨 */
 
+.weather {
+    font: 0.9rem;
+    font-weight: 700;
+    color: #777;
+    line-height: 2rem;
+    letter-spacing: -0.07rem;
+    padding-left: 20px;
+    text-align: left;
+    margin-top: 130px;
+}
+
 .weather-container {
     width: 100%;
+    height: 93px;
     margin: 0 auto;
 }
 
@@ -348,6 +362,7 @@ export default {
 .weatherBox-lt img {
     float: left;
     width: 60px;
+    margin-left: 10px;
 }
 
 .weatherBox-lt p {
@@ -367,9 +382,5 @@ export default {
     text-align: left;
     font-weight: 600;
     margin-left: 7px;
-}
-
-.margin {
-    height: 77px;
 }
 </style>

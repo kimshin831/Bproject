@@ -116,13 +116,13 @@
     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" style="margin-top: 30px">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="@/assets/img/event1.png" class="d-block w-100" alt="event1" />
+                <img src="../assets/img/event11.jpg" class="d-block w-100" alt="event1" />
             </div>
             <div class="carousel-item">
-                <img src="@/assets/img/event2.png" class="d-block w-100" alt="event2" />
+                <img src="../assets/img/event22.jpg" class="d-block w-100" alt="event2" />
             </div>
             <div class="carousel-item">
-                <img src="@/assets/img/event3.png" class="d-block w-100" alt="event3" />
+                <img src="../assets/img/event33.jpg" class="d-block w-100" alt="event3" />
             </div>
         </div>
         <button
@@ -275,14 +275,18 @@ body {
     object-position: top;
 }
 
+.carousel-item {
+    width: 100%;
+    height: auto;
+}
+
 #carouselExampleAutoplaying:nth-child(odd) .carousel-inner .carousel-item > img {
     width: 100%;
     height: 115px;
     object-fit: cover;
-    object-position: top;
 }
 
 .margin {
-    height: 67px;
+    height: 63px;
 }
 </style>
