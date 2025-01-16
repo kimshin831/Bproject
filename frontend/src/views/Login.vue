@@ -110,17 +110,29 @@ export default {
 </script>
 
 <style scoped>
+.back button {
+    position: relative;
+    top: 20px;
+    left: 20px;
+}
+
 .login-container {
     max-width: 400px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 50px;
     text-align: center;
     font-family: Arial, sans-serif;
 }
 
+.logo {
+    width: 1000px;
+    margin: 0 auto;
+}
+
 .logo img {
-    max-width: 100px;
-    margin-bottom: 20px;
+    max-width: 600px;
+    margin-left: 170px;
+    margin-top: 50px;
 }
 
 form {
@@ -151,13 +163,35 @@ button:disabled {
 
 .options {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-bottom: 15px;
+    margin-top: -5px;
 }
 
 .links {
     display: flex;
     justify-content: space-between;
+    margin-top: 30px;
+}
+
+.links button {
+    background-color: #acacac;
+}
+
+.links button:hover {
+    background-color: #9e9e9e;
+}
+
+.login {
+    margin-top: 50px;
+}
+
+.login_bg {
+    background-color: #acacac;
+}
+
+.login_bg:hover {
+    background-color: #9e9e9e;
 }
 
 footer {

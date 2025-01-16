@@ -1,11 +1,18 @@
 <template>
     <div class="login-page">
-        <h1>간편 로그인</h1>
+        <div class="back">
+            <button class="back_btn" @click="goBack" style="background-color: #fff">
+                <img src="../assets/img/chevron-left-solid.svg" alt="뒤로가기" width="30" height="30" />
+            </button>
+        </div>
+        <div class="logo">
+            <img src="../assets/img/nede_3.jpg" alt="NEDE logo" />
+        </div>
 
         <!-- 구글 로그인 -->
         <div>
             <button v-if="!isLoggedIn.google" @click="googleLogin" class="google-button">
-                <img src="@/assets/img/googlelogin.png" alt="Login with Google" class="google-button-img" />
+                <img src="@/assets/img/googlelogin.png" width="280" alt="Login with Google" class="google-button-img" />
             </button>
         </div>
 
@@ -13,9 +20,11 @@
         <div>
             <a id="kakao-login-btn" v-if="!isLoggedIn.kakao" @click="kakaoLogin">
                 <img
-                    src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg"
-                    width="222"
+                    src="../assets/img/kakaologin.png"
+                    width="280"
+                    height="53"
                     alt="카카오 로그인 버튼"
+                    style="cursor: pointer"
                 />
             </a>
         </div>
@@ -234,12 +243,33 @@ export default {
                 this.updateIsLoggedIn();
                 console.log('Naver logout complete.');
             }, 500);
+        },
+        goBack() {
+            this.$router.go(-1); // 뒤로가기
         }
     }
 };
 </script>
 
 <style scoped>
+.back button {
+    position: relative;
+    top: 30px;
+    left: -205px;
+    border: none;
+}
+
+.logo {
+    width: 1000px;
+    margin: 50px auto 30px auto;
+}
+
+.logo img {
+    max-width: 600px;
+    margin-left: 170px;
+    margin-top: 50px;
+}
+
 .login-page {
     display: flex;
     flex-direction: column;
@@ -250,7 +280,7 @@ export default {
 .google-button,
 .logout-button {
     padding: 10px 20px;
-    background-color: #4285f4;
+    background-color: #fff;
     color: white;
     border: none;
     border-radius: 4px;
@@ -260,6 +290,6 @@ export default {
 
 .google-button:hover,
 .logout-button:hover {
-    background-color: #357ae8;
+    background-color: #fff;
 }
 </style>
