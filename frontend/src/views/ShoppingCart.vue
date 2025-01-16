@@ -3,33 +3,33 @@
         <TopButton title="장바구니" />
         <div class="check_box">
             <div class="check">
-                <input type="checkbox" value="" id="check" checked />
+                <input type="checkbox" id="check" v-model="allSelected" @change="toggleAllSelected" />
                 <label for="check"> 전체선택 </label>
             </div>
             <div class="checkdelete">
-                <button><span>선택상품삭제</span></button>
-                <button><span>전체상품삭제</span></button>
+                <button @click="removeSelected"><span>선택상품삭제</span></button>
+                <button @click="clearCart"><span>전체상품삭제</span></button>
             </div>
         </div>
         <div class="contents" v-if="cart.length > 0">
             <div class="contentBox" v-for="item in cart" :key="item.id">
                 <div class="itemName">
-                    <input type="checkbox" value="" id="name" checked />
-                    <label for="name"> {{ item.title }} </label>
+                    <input type="checkbox" v-model="item.selected" @change="updateAllSelected" />
+                    <label>{{ item.title }}</label>
                 </div>
                 <div class="itemBox">
                     <div class="itemImg">
                         <img :src="item.image" alt="상품 이미지" />
                     </div>
                     <div class="itemOptions">
-                        <p>{{ item.price }} 원</p>
-                        <p>1일이내 발송예정</p>
+                        <p>{{ item.price.toLocaleString() }} 원</p>
+                        <p>1일 이내 발송 예정</p>
                         <p>옵션</p>
                         <div class="numBox">
                             <p>수량변경</p>
-                            <button @click="decrease(item)">-</button>
+                            <button @click="updateQuantity(item, item.quantity - 1)">-</button>
                             <span>{{ item.quantity }}</span>
-                            <button @click="increase(item)">+</button>
+                            <button @click="updateQuantity(item, item.quantity + 1)">+</button>
                         </div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
         <div class="buyBox" v-if="cart.length > 0">
             <div class="buyContent">
                 <p>총 {{ totalQuantity }} 개</p>
-                <p>{{ totalPrice }} <span>원</span></p>
+                <p>{{ totalPrice.toLocaleString() }} <span>원</span></p>
             </div>
             <div class="buyButton">
                 <button @click="goToCheckout">구매하기</button>
@@ -49,6 +49,7 @@
         </div>
     </div>
 </template>
+
 <script>
 import TopButton from '@/components/TopButton.vue';
 
@@ -57,25 +58,19 @@ export default {
     components: {
         TopButton
     },
-    props: ['product'], // 라우터 params로 전달된 데이터를 props로 받음
     data() {
         return {
-            cart: [] // 장바구니 데이터
+            cart: [],
+            allSelected: false // 전체 선택 상태 // 장바구니 데이터
         };
     },
     created() {
-        // query로 전달된 데이터를 파싱하여 장바구니에 추가
-        console.log('수신된 JSON 데이터:', this.$route.query.product);
-        const productQuery = this.$route.query.product;
-        if (productQuery) {
-            const productData = JSON.parse(productQuery); // JSON 문자열 파싱
-            const existingItem = this.cart.find((item) => item.id === productData.id);
-            if (existingItem) {
-                existingItem.quantity++;
-            } else {
-                this.cart.push({ ...productData, quantity: 1 });
-            }
-        }
+        // localStorage에서 장바구니 데이터 로드
+        const storedCart = localStorage.getItem('cart');
+        this.cart = storedCart ? JSON.parse(storedCart) : [];
+
+        // 전체선택 상태 초기화
+        this.updateAllSelected();
     },
     computed: {
         // 총 가격 계산
@@ -88,22 +83,63 @@ export default {
         }
     },
     methods: {
-        // 수량 감소
-        decrease(item) {
-            if (item.quantity > 1) {
-                item.quantity--;
-            }
+        saveCart() {
+            // localStorage에 장바구니 데이터 저장
+            localStorage.setItem('cart', JSON.stringify(this.cart));
         },
-        // 수량 증가
-        increase(item) {
-            item.quantity++;
+        addToCart(product) {
+            // 장바구니에 상품 추가
+            const existingItem = this.cart.find((item) => item.id === product.id);
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                this.cart.push({ ...product, quantity: 1, selected: false });
+            }
+            this.saveCart(); // 업데이트 후 저장
+        },
+        updateQuantity(item, newQuantity) {
+            // 수량 업데이트
+            if (newQuantity < 1) return; // 최소 수량 제한
+            item.quantity = newQuantity;
+            this.saveCart(); // 업데이트 후 저장
+        },
+        removeSelected() {
+            // 선택된 상품 삭제
+            this.cart = this.cart.filter((item) => !item.selected);
+            this.saveCart(); // 업데이트 후 저장
+            this.updateAllSelected(); // 전체선택 상태 업데이트
+        },
+        clearCart() {
+            // 장바구니 비우기
+            this.cart = [];
+            this.saveCart();
+            this.updateAllSelected(); // 전체선택 상태 초기화
         },
         goToCheckout() {
-            // 체크아웃 페이지로 데이터 전달
+            // 체크아웃 페이지로 이동
             this.$router.push({
                 name: 'Checkout',
-                query: { cart: JSON.stringify(this.cart) } // JSON 문자열로 변환 후 전달
+                query: { cart: JSON.stringify(this.cart) }
             });
+        },
+        toggleAllSelected() {
+            // 전체선택 상태를 모든 상품에 반영
+            this.cart.forEach((item) => {
+                item.selected = this.allSelected;
+            });
+            this.saveCart(); // 업데이트 후 저장
+        },
+        updateAllSelected() {
+            // 개별 선택 상태에 따라 전체선택 상태 업데이트
+            this.allSelected = this.cart.every((item) => item.selected);
+        }
+    },
+    watch: {
+        cart: {
+            handler() {
+                this.updateAllSelected(); // 장바구니 데이터 변경 시 전체선택 상태 업데이트
+            },
+            deep: true
         }
     }
 };

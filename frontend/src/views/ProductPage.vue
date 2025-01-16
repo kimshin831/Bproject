@@ -10,11 +10,16 @@
                 <p class="item_score"><img src="@/assets/img/leaf.svg" alt="score" /> 4.3점</p>
                 <p class="item_title">{{ product.title }}</p>
                 <p class="item_price">{{ product.price }} 원</p>
+                <div class="numBox">
+                    <button @click="decreaseQuantity">-</button>
+                    <span>{{ quantity }}</span>
+                    <button @click="increaseQuantity">+</button>
+                </div>
             </div>
         </div>
         <div class="buttons">
-            <button @click="addToCart">장바구니</button>
-            <button @click="link2">바로구매</button>
+            <button @click="addToCart">장바구니 담기</button>
+            <button @click="buyNow">바로 구매하기</button>
         </div>
     </div>
 </template>
@@ -29,10 +34,12 @@ export default {
     },
     data() {
         return {
-            product: {} // 선택된 상품 데이터를 저장
+            product: {}, // 선택된 상품 데이터를 저장
+            quantity: 1 // 선택한 상품 수량
         };
     },
     created() {
+        // URL의 id 파라미터로 상품 데이터 조회
         const productId = this.$route.params.id;
         this.product = CategoryItem.find((item) => item.id === parseInt(productId));
         if (!this.product) {
@@ -40,16 +47,39 @@ export default {
         }
     },
     methods: {
+        // 수량 감소
+        decreaseQuantity() {
+            if (this.quantity > 1) {
+                this.quantity--;
+            }
+        },
+        // 수량 증가
+        increaseQuantity() {
+            this.quantity++;
+        },
         // 장바구니로 상품 전달
         addToCart() {
-            console.log('전달된 상품 데이터:', JSON.stringify(this.product));
-            this.$router.push({
-                name: 'ShoppingCart',
-                query: { product: JSON.stringify(this.product) }
-            });
+            const productWithQuantity = { ...this.product, quantity: this.quantity };
+            const storedCart = localStorage.getItem('cart');
+            const cart = storedCart ? JSON.parse(storedCart) : [];
+
+            const existingItem = cart.find((item) => item.id === productWithQuantity.id);
+            if (existingItem) {
+                existingItem.quantity += productWithQuantity.quantity; // 기존 수량에 추가
+            } else {
+                cart.push(productWithQuantity); // 새 상품 추가
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart)); // localStorage에 저장
+            alert('장바구니에 상품이 추가되었습니다!');
         },
-        link2() {
-            alert('바로구매 기능은 아직 구현되지 않았습니다.');
+        // 바로 구매하기
+        buyNow() {
+            const productWithQuantity = { ...this.product, quantity: this.quantity };
+            this.$router.push({
+                name: 'Checkout',
+                query: { cart: JSON.stringify([productWithQuantity]) } // 바로 구매는 단일 상품
+            });
         }
     }
 };

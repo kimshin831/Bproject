@@ -3,17 +3,31 @@
         <ul class="nav justify-content-center">
             <!-- 카테고리 버튼 -->
             <li class="nav-item">
-                <button class="btn btn-primary" type="button" @click="toggleOffcanvas">
+                <button
+                    class="btn btn-primary"
+                    type="button"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasWithBothOptions"
+                    aria-controls="offcanvasWithBothOptions"
+                >
                     <img src="../assets/img/bars-solid.png" alt="logo" width="19" height="auto" />
                     <p>카테고리</p>
                 </button>
 
                 <!-- 오프캔버스 -->
-                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBothOptions" ref="offcanvas">
-                    <button type="button" class="btn-close" aria-label="Close" @click="closeOffcanvas"></button>
+                <div
+                    class="offcanvas offcanvas-start"
+                    data-bs-scroll="true"
+                    data-bs-backdrop="false"
+                    tabindex="-1"
+                    id="offcanvasWithBothOptions"
+                    aria-labelledby="offcanvasWithBothOptionsLabel"
+                >
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     <div class="offcanvas-header">
                         <!-- 아코디언 메뉴 -->
                         <div class="accordion" id="accordionExample">
+                            <!-- BEST ITEM -->
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
                                     <button
@@ -33,9 +47,7 @@
                                     data-bs-parent="#accordionExample"
                                 >
                                     <div class="accordion-body">
-                                        <router-link class="nav-link" to="/best-item" @click="closeOffcanvas">
-                                            BEST ITEM
-                                        </router-link>
+                                        <router-link class="nav-link">BEST ITEM</router-link>
                                     </div>
                                 </div>
                             </div>
@@ -58,25 +70,25 @@
                                     data-bs-parent="#accordionExample"
                                 >
                                     <div class="accordion-body">
-                                        <router-link class="nav-link" to="/category" @click="closeOffcanvas"
+                                        <router-link class="nav-link" to="/category" @click="offcanvershide"
                                             >비누/ 클랜징</router-link
                                         >
-                                        <router-link class="nav-link" to="/category/mask" @click="closeOffcanvas"
+                                        <router-link class="nav-link" to="/category" @click="offcanvershide"
                                             >마스크/ 팩/ 필링</router-link
                                         >
-                                        <router-link class="nav-link" to="/category/toner" @click="closeOffcanvas"
+                                        <router-link class="nav-link" to="/category" @click="offcanvershide"
                                             >스킨/토너/미스트</router-link
                                         >
-                                        <router-link class="nav-link" to="/category/serum" @click="closeOffcanvas"
+                                        <router-link class="nav-link" to="/category" @click="offcanvershide"
                                             >앰플/에센스/세럼</router-link
                                         >
-                                        <router-link class="nav-link" to="/category/moisture" @click="closeOffcanvas"
+                                        <router-link class="nav-link" to="/category" @click="offcanvershide"
                                             >수분젤/에센셜</router-link
                                         >
-                                        <router-link class="nav-link" to="/category/lotion" @click="closeOffcanvas"
+                                        <router-link class="nav-link" to="/category" @click="offcanvershide"
                                             >로션/크림</router-link
                                         >
-                                        <router-link class="nav-link" to="/category/suncare" @click="closeOffcanvas"
+                                        <router-link class="nav-link" to="/category" @click="offcanvershide"
                                             >썬케어</router-link
                                         >
                                     </div>
@@ -101,12 +113,12 @@
                                     data-bs-parent="#accordionExample"
                                 >
                                     <div class="accordion-body">
-                                        <a class="nav-link" @click="closeOffcanvas">시카</a>
-                                        <a class="nav-link" @click="closeOffcanvas">미백/ 화이트닝</a>
-                                        <a class="nav-link" @click="closeOffcanvas">장벽케어</a>
-                                        <a class="nav-link" @click="closeOffcanvas">안티에이징</a>
-                                        <a class="nav-link" @click="closeOffcanvas">각질관리</a>
-                                        <a class="nav-link" @click="closeOffcanvas">남성용</a>
+                                        <a class="nav-link">시카</a>
+                                        <a class="nav-link">미백/ 화이트닝</a>
+                                        <a class="nav-link">장벽케어</a>
+                                        <a class="nav-link">안티에이징</a>
+                                        <a class="nav-link">각질관리</a>
+                                        <a class="nav-link">남성용</a>
                                     </div>
                                 </div>
                             </div>
@@ -129,22 +141,22 @@
                                     data-bs-parent="#accordionExample"
                                 >
                                     <div class="accordion-body">
-                                        <router-link class="nav-link" to="/ingredient" @click="closeOffcanvas"
+                                        <router-link class="nav-link" to="/ingredient" @click="offcanvershide"
                                             >어성초</router-link
                                         >
-                                        <router-link class="nav-link" to="/ingredient/collagen" @click="closeOffcanvas"
+                                        <router-link class="nav-link" to="/ingredient" @click="offcanvershide"
                                             >콜라겐</router-link
                                         >
                                         <router-link
                                             class="nav-link"
                                             to="/ingredient/hyaluronic"
-                                            @click="closeOffcanvas"
+                                            @click="offcanvershide"
                                             >히알루론산</router-link
                                         >
-                                        <router-link class="nav-link" to="/ingredient/panthenol" @click="closeOffcanvas"
+                                        <router-link class="nav-link" to="/ingredient" @click="offcanvershide"
                                             >판테놀</router-link
                                         >
-                                        <router-link class="nav-link" to="/ingredient/retinol" @click="closeOffcanvas"
+                                        <router-link class="nav-link" to="/ingredient" @click="offcanvershide"
                                             >레티놀</router-link
                                         >
                                     </div>
@@ -196,12 +208,8 @@
                                     data-bs-parent="#accordionExample"
                                 >
                                     <div class="accordion-body">
-                                        <router-link class="nav-link" to="/reviews" @click="closeOffcanvas"
-                                            >Reviw</router-link
-                                        >
-                                        <router-link class="nav-link" to="/event" @click="closeOffcanvas"
-                                            >EVENT</router-link
-                                        >
+                                        <a class="nav-link">Reviw</a>
+                                        <a @click="Event" class="nav-link">EVENT</a>
                                         <a class="nav-link">문의하기</a>
                                         <a class="nav-link">안티에이징</a>
                                         <a class="nav-link">FAQ</a>
@@ -214,7 +222,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <router-link class="nav-link" to="/qna" @click="closeOffcanvas">
+                <router-link class="nav-link" to="/qna" @click="offcanvershide">
                     <div class="nav_icon">
                         <img src="../assets/img/qna.svg" alt="qna" />
                         <p>Q&A</p>
@@ -222,14 +230,14 @@
                 </router-link>
             </li>
             <li class="nav-item">
-                <router-link class="nav-link" to="/" @click="closeOffcanvas">
+                <router-link class="nav-link" to="/" @click="offcanvershide">
                     <div class="nav_icon">
                         <img src="../assets/img/NEDE_logo.png" alt="logo" class="nav_logo" />
                     </div>
                 </router-link>
             </li>
             <li class="nav-item">
-                <router-link class="nav-link" to="/reviews" @click="closeOffcanvas">
+                <router-link class="nav-link" to="/reviews" @click="offcanvershide">
                     <div class="nav_icon">
                         <img src="../assets/img/real.svg" alt="review" />
                         <p>리얼리뷰</p>
@@ -237,7 +245,7 @@
                 </router-link>
             </li>
             <li class="nav-item">
-                <router-link class="nav-link" to="/mypage" @click="closeOffcanvas">
+                <router-link class="nav-link" to="/mypage" @click="offcanvershide">
                     <div class="nav_icon">
                         <img src="../assets/img/user.svg" alt="mypage" />
                         <p>마이페이지</p>
@@ -248,71 +256,24 @@
     </div>
 </template>
 <script>
-import { onMounted, onUnmounted, ref, nextTick } from 'vue';
+import { useRouter } from 'vue-router';
 
 export default {
     name: 'footerFix',
     setup() {
-        const offcanvasRef = ref(null); // 오프캔버스 DOM 참조
-        let offcanvasInstance = null; // Bootstrap Offcanvas 인스턴스
+        const router = useRouter();
 
-        // 오프캔버스 초기화
-        const initializeOffcanvas = async () => {
-            await nextTick(); // DOM이 완전히 렌더링된 후 초기화
-            if (offcanvasRef.value) {
-                // 기존 인스턴스를 제거하고 새로 생성
-                if (offcanvasInstance) {
-                    offcanvasInstance.dispose();
-                }
-                offcanvasInstance = new bootstrap.Offcanvas(offcanvasRef.value);
-
-                // Bootstrap 이벤트 등록
-                offcanvasRef.value.addEventListener('shown.bs.offcanvas', () => {
-                    console.log('오프캔버스가 열렸습니다.');
-                });
-                offcanvasRef.value.addEventListener('hidden.bs.offcanvas', () => {
-                    console.log('오프캔버스가 닫혔습니다.');
-                });
-            }
-        };
-
-        // 오프캔버스 열기/닫기 토글
-        const toggleOffcanvas = async () => {
-            await initializeOffcanvas(); // 초기화 보장
-            if (offcanvasInstance) {
-                const isVisible = offcanvasRef.value.classList.contains('show');
-                if (isVisible) {
-                    offcanvasInstance.hide();
-                } else {
-                    offcanvasInstance.show();
-                }
-            }
-        };
-
-        // 오프캔버스 닫기
-        const closeOffcanvas = () => {
+        // 오프캔버스 닫기 메서드
+        const offcanvershide = () => {
+            const offcanvasElement = document.getElementById('offcanvasWithBothOptions');
+            const offcanvasInstance = bootstrap.Offcanvas.getInstance(offcanvasElement);
             if (offcanvasInstance) {
                 offcanvasInstance.hide();
             }
         };
 
-        // 컴포넌트가 마운트되면 초기화
-        onMounted(() => {
-            initializeOffcanvas();
-        });
-
-        // 컴포넌트가 언마운트되면 정리
-        onUnmounted(() => {
-            if (offcanvasInstance) {
-                offcanvasInstance.dispose(); // 인스턴스 정리
-                offcanvasInstance = null;
-            }
-        });
-
         return {
-            toggleOffcanvas,
-            closeOffcanvas,
-            offcanvas: offcanvasRef
+            offcanvershide
         };
     }
 };
@@ -330,7 +291,6 @@ a {
     bottom: 0;
     background-color: #fff;
     z-index: 1000;
-    box-shadow: 2px 2px 2px 2px gray;
 }
 .nav.justify-content-center {
     width: 100%;
