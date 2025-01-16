@@ -13,12 +13,12 @@
     </div>
     <div class="container">
         <ul>
-            <li>1:1 문의</li>
-            <li>취소/반품</li>
-            <li>공지사항</li>
-            <li>배송문의</li>
-            <li>상품문의</li>
-            <li>회사정보</li>
+            <li><router-link class="nav_link" to="">1:1 문의</router-link></li>
+            <li><router-link class="nav_link" to="">취소/반품</router-link></li>
+            <li><router-link class="nav_link" to="">공지사항</router-link></li>
+            <li><router-link class="nav_link" to="">배송문의</router-link></li>
+            <li><router-link class="nav_link" to="">상품문의</router-link></li>
+            <li><router-link class="nav_link" to="/companyprofile">회사정보</router-link></li>
         </ul>
     </div>
     <div class="question">
@@ -238,5 +238,14 @@ export default {
 
 .margin {
     height: 67px;
+}
+
+.container ul li .nav_link {
+    text-decoration: none;
+    color: #666;
+}
+
+.container ul li .nav_link:hover {
+    text-decoration: underline;
 }
 </style>

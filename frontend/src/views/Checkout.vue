@@ -48,10 +48,6 @@
                     <button @click="useMaxPoints" class="btns">최대사용</button>
                     <button @click="resetPoints" class="btns">초기화</button>
                 </div>
-                <div class="checkbox">
-                    <input type="checkbox" v-model="useAllPoints" id="useAllPoints" />
-                    <label for="useAllPoints">항상 보유 포인트 최대 사용</label>
-                </div>
             </div>
 
             <!-- 결제 금액 확인 -->
@@ -81,6 +77,8 @@
                     <button class="btns bt">카카오 페이</button>
                 </div>
             </div>
+
+            <!-- 동의 항목 -->
             <section class="section s5">
                 <div class="checkbox-group">
                     <div>
@@ -103,9 +101,10 @@
                 <button class="pay-button" @click="confirmOrder">결제하기</button>
             </div>
         </div>
+        <div class="margin"></div>
     </div>
-    <div class="margin"></div>
 </template>
+
 <script>
 import TopButton from '@/components/TopButton.vue';
 
@@ -118,8 +117,7 @@ export default {
         return {
             deliveryRequest: '', // 배송 요청사항 선택 값
             pointsUsed: 0, // 사용된 포인트
-            useAllPoints: false, // 포인트 최대 사용 여부
-            shippingFee: 0, // 배송비 (예: 무료 배송)
+            shippingFee: 0, // 배송비
             cart: [], // 장바구니 데이터
             agreeTerms: false, // 전체 동의
             agreeOrderCheck: false, // 주문내용 확인 동의
@@ -140,7 +138,20 @@ export default {
             return Math.max(this.totalPrice - this.pointsUsed + this.shippingFee, 0);
         }
     },
+    watch: {
+        // 전체 동의 상태 변경 시 개별 항목 동기화
+        agreeTerms(newValue) {
+            this.agreeOrderCheck = newValue;
+            this.agreePrivacy = newValue;
+        },
+        // 개별 항목 변경 시 전체 동의 상태 업데이트
+        agreeOrderCheck: 'updateAgreeTerms',
+        agreePrivacy: 'updateAgreeTerms'
+    },
     methods: {
+        updateAgreeTerms() {
+            this.agreeTerms = this.agreeOrderCheck && this.agreePrivacy;
+        },
         useMaxPoints() {
             this.pointsUsed = Math.min(this.totalPrice * 0.5, this.totalPrice);
         },
@@ -171,6 +182,7 @@ export default {
     }
 };
 </script>
+
 <style scoped>
 .checkout-container {
     margin: 15px;
