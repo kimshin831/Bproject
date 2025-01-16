@@ -246,6 +246,10 @@ body {
     text-align: center;
 }
 
+.category .item:hover {
+    transform: scale(1.13);
+}
+
 .category .item img {
     width: auto;
     height: 33px;

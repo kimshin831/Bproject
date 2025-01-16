@@ -1,6 +1,7 @@
 <template>
     <div class="container">
         <TopButton title="상세리뷰" />
+        <p class="title">{{ review.title }}</p>
         <div v-if="isLoading">리뷰를 불러오는 중...</div>
         <div v-else class="review-container">
             <div class="buttons" v-if="isOwner">
@@ -11,13 +12,13 @@
                 <img :src="review.image_path" alt="리뷰이미지" v-if="review.image_path" />
             </div>
             <div class="review-content">
-                <p>아이디 : {{ review.username }}</p>
-                <p><img src="@/assets/img/leaf.svg" alt="score" /> 4.3점</p>
-                <p>상품명 : {{ review.title }}</p>
-                <p>{{ review.content }}</p>
+                <p class="id">아이디ㅣ{{ review.username }}</p>
+                <p class="score"><img src="@/assets/img/leaf.svg" alt="score" /> 4.3점</p>
+                <p class="content">{{ review.content }}</p>
             </div>
         </div>
     </div>
+    <div class="margin"></div>
 </template>
 
 <script>
@@ -107,40 +108,67 @@ export default {
 </script>
 
 <style scoped>
-.review-container {
-    padding: 20px;
+.title {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 30px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
 }
+
+/* 버튼 css 부탁해요..♥ ㅠㅠㅜ */
 .buttons {
-    margin-bottom: 20px;
+    margin-top: 20px;
 }
 .reviewImg img {
-    max-width: 100%;
     height: auto;
+    object-fit: scale-down;
 }
-</style>
 
-<style scoped>
-.container {
-    width: 100%;
-    height: 100%;
-}
 .buttons {
     text-align: right;
     margin-top: 15px;
 }
 .reviewImg {
-    background-color: #999;
-    margin: 15px auto;
-    width: 350px;
-    height: 320px;
+    background-color: #fff;
+    margin: 0 auto;
+    margin-top: 15px;
+    width: 90%;
 }
 .reviewImg img {
     display: block;
-    width: 350px;
-    height: 320px;
+    width: 100%;
+    height: 500px;
 }
 .review-content {
-    margin: 10px auto;
-    width: 350px;
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 90%;
+}
+
+.id {
+    float: right;
+    font-size: 0.9rem;
+}
+
+.score {
+    font-size: 1.05rem;
+}
+
+.score img {
+    margin-right: 3px;
+    filter: invert(10%) sepia(89%) saturate(6058%) hue-rotate(83deg) brightness(108%) contrast(86%);
+}
+
+.content {
+    width: 100%;
+    text-align: justify;
+    border-top: 1px solid #ccc;
+    padding: 15px 0;
+}
+
+.margin {
+    height: 63px;
 }
 </style>

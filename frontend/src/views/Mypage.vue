@@ -1,16 +1,20 @@
 <template>
-    <TopButton title="마이페이지" />
     <div class="container">
+        <TopButton title="마이페이지" />
         <div class="profile">
-            <img src="https://via.placeholder.com/100" alt="?" />
+            <div class="userIcon">
+                <img src="@/assets/img/user.svg" alt="user" />
+            </div>
             <div class="title">
                 <!-- 로그인 상태에 따라 메시지 변경 -->
                 <template v-if="Object.values(isLoggedIn).some((v) => v)"> {{ userName }}님 환영합니다. </template>
                 <template v-else> 야생동물을 구해주세요. </template>
             </div>
             <!-- 로그인 상태에 따라 버튼 변경 -->
-            <a class="login" v-if="Object.values(isLoggedIn).some((v) => v)" @click="toggleLogin"> 로그아웃 > </a>
-            <a class="login" v-else @click="Login"> 로그인 > </a>
+            <div>
+                <a class="login" v-if="Object.values(isLoggedIn).some((v) => v)" @click="toggleLogin"> 로그아웃 > </a>
+                <a class="login" v-else @click="Login"> 로그인 > </a>
+            </div>
         </div>
         <div class="stats">
             <div>
@@ -65,6 +69,7 @@
                 <li>설정</li>
             </ul>
         </div>
+        <div class="weather">날씨</div>
         <div class="weather-container">
             <div class="weatherBox" v-if="weather && weatherIcon">
                 <div class="weatherBox-lt">
@@ -75,7 +80,8 @@
                 </div>
                 <div class="weatherBox-rt">
                     <p>
-                        <span>최고 : {{ weather.temp_max }} ℃ </span><span>최저: {{ weather.temp_min }} ℃</span>
+                        최고ㅣ{{ weather.temp_max }} ℃ <br />
+                        최저ㅣ{{ weather.temp_min }} ℃
                     </p>
                     <p>
                         미세먼지 <span :style="{ color: airConditionColor }">{{ airCondition }}</span>
@@ -391,7 +397,6 @@ export default {
 }
 
 .profile .title {
-    float: left;
     margin-top: 13px;
     font-size: 1.3rem;
     font-weight: bold;
@@ -474,7 +479,7 @@ export default {
     letter-spacing: -0.07rem;
     padding-left: 20px;
     text-align: left;
-    margin-top: 130px;
+    margin-top: 29%;
 }
 
 .weather-container {

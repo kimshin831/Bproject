@@ -128,7 +128,7 @@ button {
 }
 
 p.title {
-    width: 100%;
+    width: 63vw;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -138,7 +138,7 @@ p.title {
 }
 
 p.content_r {
-    width: 100%;
+    width: 63vw;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
