@@ -1,12 +1,13 @@
 <template>
-    <button @click="goBack">
-        <img src="../assets/img/chevron-left-solid.svg" alt="뒤로가기" width="20" height="20" />
-    </button>
+    <div class="back">
+        <button class="back_btn" @click="goBack" style="background-color: #fff">
+            <img src="../assets/img/chevron-left-solid.svg" alt="뒤로가기" width="30" height="30" />
+        </button>
+    </div>
+    <div class="logo">
+        <img src="../assets/img/nede_3.jpg" alt="NEDE logo" />
+    </div>
     <div class="login-container">
-        <div class="logo">
-            <img src="../assets/img/nede_3.jpg" alt="NEDE logo" />
-        </div>
-
         <form @submit.prevent="handleLogin">
             <input type="text" v-model="form.username" placeholder="아이디" required />
             <input
@@ -20,8 +21,8 @@
                 <label> <input type="checkbox" v-model="form.saveId" /> 아이디 저장 </label>
             </div>
 
-            <button type="submit" :disabled="loading">로그인</button>
-            <button type="button" @click="Easylogin">간편 로그인</button>
+            <button class="login login_bg" type="submit" :disabled="loading">로그인</button>
+            <button class="snslogin login_bg" type="button" @click="Easylogin">간편 로그인</button>
 
             <div class="links">
                 <button @click="navigateTo('/register')">회원가입</button>
