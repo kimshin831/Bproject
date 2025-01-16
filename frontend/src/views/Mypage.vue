@@ -402,6 +402,7 @@ export default {
     font-weight: bold;
     color: #555;
     line-height: 30px;
+    text-align: left;
 }
 
 .login {
@@ -479,7 +480,7 @@ export default {
     letter-spacing: -0.07rem;
     padding-left: 20px;
     text-align: left;
-    margin-top: 29%;
+    margin-top: 30px;
 }
 
 .weather-container {
