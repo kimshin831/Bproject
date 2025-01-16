@@ -4,10 +4,6 @@
         <p class="title">{{ review.title }}</p>
         <div v-if="isLoading">리뷰를 불러오는 중...</div>
         <div v-else class="review-container">
-            <div class="buttons" v-if="isOwner">
-                <button type="button" @click="navigateToEdit">수정</button>
-                <button type="button" @click="deleteReview">삭제</button>
-            </div>
             <div class="reviewImg">
                 <img :src="review.image_path" alt="리뷰이미지" v-if="review.image_path" />
             </div>
@@ -16,6 +12,18 @@
                 <p class="score"><img src="@/assets/img/leaf.svg" alt="score" /> 4.3점</p>
                 <p class="content">{{ review.content }}</p>
             </div>
+            <div class="review-bottom">
+                <div>
+                    <button type="button" @click="ReviewList" class="bottom-Btn">
+                        <img src="../assets/img/chevron-left-solid.svg" alt="뒤로가기" width="15" height="15" />
+                        목록으로 돌아가기
+                    </button>
+                </div>
+                <div class="buttons" v-if="isOwner">
+                    <button type="button" @click="navigateToEdit">수정</button>ㅣ
+                    <button type="button" @click="deleteReview">삭제</button>
+                </div>
+            </div>
         </div>
     </div>
     <div class="margin"></div>
@@ -23,6 +31,7 @@
 
 <script>
 import TopButton from '@/components/TopButton.vue';
+import ReviewList from './ReviewList.vue';
 export default {
     name: 'ReviewPage',
     components: { TopButton },
@@ -98,6 +107,9 @@ export default {
                     console.error('리뷰 삭제 중 오류 발생:', error);
                 }
             }
+        },
+        ReviewList() {
+            this.$router.push('/reviews');
         }
     },
     async mounted() {
@@ -117,19 +129,11 @@ export default {
     font-weight: bold;
 }
 
-/* 버튼 css 부탁해요..♥ ㅠㅠㅜ */
-.buttons {
-    margin-top: 20px;
-}
 .reviewImg img {
     height: auto;
     object-fit: scale-down;
 }
 
-.buttons {
-    text-align: right;
-    margin-top: 15px;
-}
 .reviewImg {
     background-color: #fff;
     margin: 0 auto;
@@ -141,10 +145,15 @@ export default {
     width: 100%;
     height: 500px;
 }
+.review-container {
+    margin: 0 auto;
+    width: 90%;
+}
 .review-content {
     margin: 0 auto;
     margin-top: 20px;
-    width: 90%;
+    width: 100%;
+    margin-bottom: 10px;
 }
 
 .id {
@@ -163,11 +172,36 @@ export default {
 
 .content {
     width: 100%;
+    min-height: 150px;
     text-align: justify;
     border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
     padding: 15px 0;
 }
-
+.review-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.bottom-Btn {
+    border: none;
+    background-color: #fff;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+.buttons button {
+    border: none;
+    background-color: #fff;
+    font-size: 0.9em;
+}
+.buttons button:hover {
+    text-decoration: underline;
+}
+.bottom-Btn:hover {
+    text-decoration: underline;
+}
 .margin {
     height: 63px;
 }
