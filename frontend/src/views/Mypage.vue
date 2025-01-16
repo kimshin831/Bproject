@@ -1,53 +1,52 @@
 <template>
+    <TopButton title="마이페이지" />
     <div class="container">
-        <TopButton title="마이페이지" />
         <div class="profile">
-            <img src="@/assets/img/user.svg" alt="user" />
+            <img src="https://via.placeholder.com/100" alt="?" />
             <div class="title">
                 <!-- 로그인 상태에 따라 메시지 변경 -->
-                <template v-if="isLoggedIn"> {{ userName }}님 환영합니다. </template>
+                <template v-if="Object.values(isLoggedIn).some((v) => v)"> {{ userName }}님 환영합니다. </template>
                 <template v-else> 야생동물을 구해주세요. </template>
             </div>
             <!-- 로그인 상태에 따라 버튼 변경 -->
-            <a class="login" @click="toggleLogin">
-                {{ isLoggedIn ? '로그아웃 >' : '로그인 >' }}
-            </a>
+            <a class="login" v-if="Object.values(isLoggedIn).some((v) => v)" @click="toggleLogin"> 로그아웃 > </a>
+            <a class="login" v-else @click="Login"> 로그인 > </a>
         </div>
         <div class="stats">
             <div>
                 <a class="link point">
-                    포인트
                     <strong>0P</strong>
+                    포인트
                 </a>
             </div>
             <div>
                 <a class="link coupon">
-                    쿠폰
                     <strong>0장</strong>
+                    쿠폰
                 </a>
             </div>
             <div>
                 <a class="link order">
-                    주문내역
                     <strong>0</strong>
+                    주문내역
                 </a>
             </div>
             <div>
                 <a class="link delivery">
-                    배송
                     <strong>0</strong>
+                    배송
                 </a>
             </div>
             <div>
                 <a class="link evaluation">
-                    나의 평가
                     <strong>0</strong>
+                    나의 평가
                 </a>
             </div>
             <div>
                 <a class="link inquiry">
-                    문의
                     <strong>0</strong>
+                    문의
                 </a>
             </div>
         </div>
@@ -66,19 +65,17 @@
                 <li>설정</li>
             </ul>
         </div>
-        <div class="weather">날씨</div>
         <div class="weather-container">
             <div class="weatherBox" v-if="weather && weatherIcon">
                 <div class="weatherBox-lt">
                     <div><img :src="weatherIcon" :alt="weatherIcon" /></div>
                     <div>
-                        <p>{{ weather.temp }}º</p>
+                        <p>{{ weather.temp }}</p>
                     </div>
                 </div>
                 <div class="weatherBox-rt">
                     <p>
-                        최고ㅣ{{ weather.temp_max }} ℃ <br />
-                        최저ㅣ{{ weather.temp_min }} ℃
+                        <span>최고 : {{ weather.temp_max }} ℃ </span><span>최저: {{ weather.temp_min }} ℃</span>
                     </p>
                     <p>
                         미세먼지 <span :style="{ color: airConditionColor }">{{ airCondition }}</span>
@@ -102,68 +99,200 @@ export default {
     },
     data() {
         return {
-            isLoggedIn: false, // 로그인 상태 여부
-            userName: '' // 로그인한 사용자 이름
+            isLoggedIn: {
+                google: false,
+                kakao: false,
+                naver: false,
+                general: false
+            },
+            userName: '', // 로그인한 사용자 이름
+            naverAccessToken: null // 네이버 액세스 토큰 저장
         };
     },
+    mounted() {
+        console.log('Mounted: Checking initial login state...');
+        this.updateIsLoggedIn(); // LocalStorage 기반 초기화
+        this.checkNaverLogin(); // 네이버 로그인 상태 확인
+        this.checkLoginStatus(); // 서버 기반 로그인 상태 확인
+        console.log('Initial isLoggedIn:', this.isLoggedIn); // 상태 로그 확인
+
+        // UI 강제 업데이트
+        setTimeout(() => {
+            this.$forceUpdate(); // UI 동기화
+            console.log('Final isLoggedIn after timeout:', JSON.stringify(this.isLoggedIn));
+        }, 500);
+    },
+
     methods: {
         Login() {
             this.$router.push('/login');
         },
-        async toggleLogin() {
-            if (this.isLoggedIn) {
-                // 로그아웃 요청
-                try {
-                    const response = await fetch('/api/auth/logout.php', {
-                        method: 'POST',
-                        credentials: 'include' // 쿠키 포함
-                    });
-                    const data = await response.json();
-                    console.log('Logout Response:', data); // 디버깅용
 
-                    if (data.status === 'success') {
-                        this.isLoggedIn = false;
-                        this.userName = '';
-                        alert('로그아웃되었습니다.');
-                    } else {
-                        alert(data.message || '로그아웃 실패');
-                    }
+        updateIsLoggedIn() {
+            this.isLoggedIn = {
+                google: localStorage.getItem('googleLoggedIn') === 'true',
+                kakao: localStorage.getItem('kakaoLoggedIn') === 'true',
+                naver: localStorage.getItem('naverLoggedIn') === 'true',
+                general: localStorage.getItem('isLoggedIn') === 'true' // 일반 로그인 상태 추가
+            };
+            console.log('Updated isLoggedIn:', JSON.stringify(this.isLoggedIn));
+        },
+        async logoutAll() {
+            console.log('소셜 및 일반 로그아웃 시작...');
+
+            await Promise.all([this.googleLogout(), this.kakaoLogout(), this.naverLogout()]);
+
+            try {
+                console.log('PHP 로그아웃 요청...');
+                const response = await fetch('/api/auth/logout.php', {
+                    method: 'POST',
+                    credentials: 'include' // 세션 쿠키 포함
+                });
+                const data = await response.json();
+                console.log('PHP Logout Response:', data);
+
+                if (data.status !== 'success') {
+                    throw new Error(data.message || 'PHP 로그아웃 실패');
+                }
+            } catch (error) {
+                console.error('PHP 로그아웃 요청 중 오류:', error);
+                alert('로그아웃 처리 중 오류가 발생했습니다.');
+            } finally {
+                this.isLoggedIn = { google: false, kakao: false, naver: false, general: false };
+                this.userName = '';
+                localStorage.clear();
+                console.log('모든 상태 초기화 완료.');
+            }
+        },
+
+        googleLogout() {
+            return new Promise((resolve) => {
+                console.log('Logging out from Google...');
+                const googleLogoutUrl = 'https://accounts.google.com/Logout';
+                const iframe = document.createElement('iframe');
+                iframe.style.display = 'none';
+                iframe.src = googleLogoutUrl;
+                document.body.appendChild(iframe);
+
+                setTimeout(() => {
+                    this.isLoggedIn.google = false;
+                    localStorage.removeItem('googleLoggedIn');
+                    console.log('Google logout complete.');
+                    resolve();
+                }, 500);
+            });
+        },
+
+        kakaoLogout() {
+            return new Promise((resolve) => {
+                console.log('Logging out from Kakao...');
+                if (window.Kakao && window.Kakao.Auth) {
+                    window.Kakao.Auth.logout(() => {
+                        this.isLoggedIn.kakao = false;
+                        localStorage.removeItem('kakaoLoggedIn');
+                        console.log('Kakao logout complete.');
+                        resolve();
+                    });
+                } else {
+                    console.error('Kakao SDK가 로드되지 않았습니다.');
+                    resolve();
+                }
+            });
+        },
+
+        naverLogout() {
+            return new Promise((resolve) => {
+                console.log('Logging out from Naver...');
+                if (!this.naverAccessToken) {
+                    console.log('Naver is not logged in.');
+                    resolve();
+                    return;
+                }
+                const logoutUrl = `https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=MyEYpin_VSCD218l6SHu&client_secret=kkCdziVPyr&access_token=${this.naverAccessToken}&service_provider=NAVER`;
+                const iframe = document.createElement('iframe');
+                iframe.style.display = 'none';
+                iframe.src = logoutUrl;
+                document.body.appendChild(iframe);
+
+                setTimeout(() => {
+                    this.naverAccessToken = null;
+                    this.isLoggedIn.naver = false;
+                    localStorage.removeItem('naverLoggedIn');
+                    console.log('Naver logout complete.');
+                    resolve();
+                }, 500);
+            });
+        },
+
+        async toggleLogin() {
+            if (Object.values(this.isLoggedIn).some((v) => v)) {
+                // 로그인 상태일 때만 로그아웃 처리
+                console.log('로그아웃 진행 중...');
+
+                try {
+                    await this.logoutAll(); // 모든 로그아웃 작업 실행
+                    alert('로그아웃되었습니다.');
+
+                    // 로그아웃 완료 후 상태 초기화
+                    this.isLoggedIn = { google: false, kakao: false, naver: false };
+                    this.userName = '';
+                    localStorage.clear();
                 } catch (error) {
-                    console.error('로그아웃 요청 중 오류:', error);
-                    alert('로그아웃 요청 중 오류 발생');
+                    console.error('로그아웃 중 문제가 발생했습니다:', error);
+                    alert('로그아웃 처리 중 오류가 발생했습니다.');
                 }
             } else {
-                // 로그인 페이지로 이동
+                // 이미 로그아웃 상태인 경우
+                alert('이미 로그아웃 상태입니다.');
                 this.$router.push('/login');
             }
         },
+
         async checkLoginStatus() {
             try {
                 const response = await fetch('/api/auth/check_login.php', {
                     method: 'GET',
-                    credentials: 'include' // 쿠키 포함
+                    credentials: 'include' // 세션 쿠키 포함
                 });
-                console.log('Response Status:', response.status); // 디버깅용
-                const data = await response.json();
-                console.log('Response Data:', data); // 디버깅용
 
-                // 로그인 상태 확인 (데이터를 logged_in으로 판단)
+                if (!response.ok) {
+                    throw new Error(`Failed to check login status: ${response.status}`);
+                }
+
+                const data = await response.json();
+
                 if (data.logged_in) {
-                    this.isLoggedIn = true;
+                    this.isLoggedIn.general = true;
                     this.userName = data.username;
+                    localStorage.setItem('isLoggedIn', 'true');
                 } else {
-                    console.log('로그인되지 않음:', data);
-                    this.isLoggedIn = false;
-                    this.userName = '';
+                    this.isLoggedIn.general = false;
+                    localStorage.removeItem('isLoggedIn');
                 }
             } catch (error) {
                 console.error('로그인 상태 확인 중 오류:', error);
+                this.isLoggedIn.general = false;
+            } finally {
+                this.updateIsLoggedIn(); // UI 동기화
             }
+        },
+
+        checkNaverLogin() {
+            const naverLogin = new window.naver.LoginWithNaverId({
+                clientId: 'MyEYpin_VSCD218l6SHu',
+                callbackUrl: 'http://green609b.dothome.co.kr/easylogin',
+                isPopup: false
+            });
+            naverLogin.getLoginStatus((status) => {
+                if (status) {
+                    this.naverAccessToken = naverLogin.accessToken.accessToken;
+                    localStorage.setItem('naverLoggedIn', 'true');
+                    this.updateIsLoggedIn();
+                } else {
+                    console.log('No Naver login detected.');
+                }
+            });
         }
-    },
-    mounted() {
-        // 초기 로그인 상태 확인
-        this.checkLoginStatus();
     },
     setup() {
         // 반응형 데이터 선언

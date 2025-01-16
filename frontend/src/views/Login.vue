@@ -64,22 +64,34 @@ export default {
                 const response = await fetch('http://green609b.dothome.co.kr/api/auth/login.php', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
-                        credentials: 'include'
+                        'Content-Type': 'application/json'
                     },
+                    credentials: 'include',
                     body: JSON.stringify(this.form)
                 });
 
-                const result = await response.json();
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const result = await response.json(); // JSON으로 파싱
+                console.log('Response result:', result); // 서버 응답 디버깅
+
                 if (result.status === 'success') {
-                    alert('로그인 성공!');
-                    this.$router.push('/mypage'); // 메인 페이지로 이동
+                    this.isLoggedIn = true; // 로그인 상태 설정
+                    localStorage.setItem('isLoggedIn', 'true'); // 로그인 상태를 localStorage에 저장
+                    // 로그인 성공 시 마이페이지로 이동
+                    alert('로그인 되었습니다.');
+                    this.$router.push('/mypage');
+                    /* this.$router.push('/'); */
+                    this.username = ''; // 입력 필드 초기화
+                    this.password = '';
                 } else {
-                    alert(result.message || '로그인 실패!');
+                    // 서버에서 반환된 에러 메시지 표시
+                    this.error = result.data?.message || 'Login failed';
                 }
             } catch (error) {
-                alert('서버와 통신 중 문제가 발생했습니다.');
-                console.error('Error:', error);
+                console.error('Login error:', error); // 디버깅을 위한 출력
+                this.error = error.message || 'An unexpected error occurred';
             } finally {
                 this.loading = false;
             }
