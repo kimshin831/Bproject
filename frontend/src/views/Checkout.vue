@@ -6,7 +6,7 @@
             <div class="section">
                 <h2 class="Shipping">배송지 정보 <span>필수</span></h2>
                 <button class="address">신규 배송지 등록</button>
-                <h2 v-if="!deliveryRequest" class="Shipping">배송시 요청사항 <span>필수</span></h2>
+                <h2 class="Shipping">배송시 요청사항 <span v-if="!deliveryRequest">필수</span></h2>
                 <select v-model="deliveryRequest" class="dropdown">
                     <option disabled value="">요청사항 선택</option>
                     <option>문 앞에 놓아주세요</option>
