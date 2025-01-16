@@ -54,7 +54,7 @@ export default {
     }
 };
 </script>
-<style>
+<style scoped>
 .map-container {
     width: 100%;
     margin: 0 auto;

@@ -126,13 +126,13 @@ export default {
 }
 
 .logo {
-    width: 1000px;
+    width: 400px;
     margin: 0 auto;
 }
 
 .logo img {
-    max-width: 600px;
-    margin-left: 170px;
+    display: block;
+    margin: 0 auto;
     margin-top: 50px;
 }
 
