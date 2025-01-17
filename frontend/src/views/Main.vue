@@ -179,7 +179,7 @@ body {
 .navbar.bg-body-tertiary {
     background: #fff;
     padding: 0;
-    margin: 1rem 0 0.5rem 0.5rem;
+    margin: 0.5rem 0 0.5rem 0.5rem;
 }
 
 .container-fluid {
@@ -235,7 +235,7 @@ body {
 
 .carousel-item {
     width: 100%;
-    height: 63vh;
+    height: 60vh;
 }
 
 .carousel-item > img {
@@ -359,6 +359,6 @@ button:nth-child(3) {
     right: 10px;
 }
 .margin {
-    height: 63px;
+    height: 60px;
 }
 </style>

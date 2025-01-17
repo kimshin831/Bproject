@@ -127,7 +127,8 @@
                         :aria-expanded="activeIndex === 3"
                         aria-controls="collapseFour"
                     >
-                        <span>04</span>&ensp; 상품을 구매하고 싶은데 "구매하기" 버튼이 없어요. 어떻게 구매가능한가요?
+                        <span>04</span>&ensp; 상품을 구매하고 싶은데 "구매하기" 버튼이 없어요. <br />
+                        어떻게 구매가능한가요?
                     </button>
                 </h2>
                 <div
@@ -251,7 +252,7 @@ export default {
 .accordion-header span {
     font-size: 18px;
     font-weight: 700;
-    margin-right: 5px;
+    margin-right: 10px;
 }
 
 .accordion-header button {
@@ -280,7 +281,7 @@ export default {
 }
 
 .margin {
-    height: 67px;
+    height: 63px;
 }
 
 .container ul li .nav_link {

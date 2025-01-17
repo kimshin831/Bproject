@@ -467,7 +467,7 @@ export default {
 }
 
 .section ul li {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #000;
 }
 
@@ -521,6 +521,6 @@ export default {
 }
 
 .magin {
-    height: 120px;
+    height: 63px;
 }
 </style>

@@ -204,10 +204,10 @@
                                     :class="{ show: activeAccordion.includes('collapseSix') }"
                                 >
                                     <div class="accordion-body">
-                                        <router-link class="nav-link" to="" @click.native="closeOffcanvas"
+                                        <router-link class="nav-link" to="/reviews" @click.native="closeOffcanvas"
                                             >리뷰</router-link
                                         >
-                                        <router-link class="nav-link" to="" @click.native="closeOffcanvas"
+                                        <router-link class="nav-link" to="/event" @click.native="closeOffcanvas"
                                             >EVENT</router-link
                                         >
                                         <router-link class="nav-link" to="" @click.native="closeOffcanvas"

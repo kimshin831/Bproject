@@ -13,6 +13,7 @@
             <p><span>이메일</span> : example@company.com</p>
         </div>
     </div>
+    <div class="margin"></div>
 </template>
 <script>
 import { onMounted } from 'vue';
@@ -85,5 +86,9 @@ export default {
 
 .company > p span {
     font-weight: bold;
+}
+
+.margin {
+    height: 63px;
 }
 </style>
