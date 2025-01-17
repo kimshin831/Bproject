@@ -8,7 +8,7 @@
             <div class="title">
                 <!-- 로그인 상태에 따라 메시지 변경 -->
                 <template v-if="Object.values(isLoggedIn).some((v) => v)"> {{ userName }}님 환영합니다. </template>
-                <template v-else> 야생동물을 구해주세요. </template>
+                <template v-else> 로그인을 해주세요. </template>
             </div>
             <!-- 로그인 상태에 따라 버튼 변경 -->
             <div>
@@ -93,6 +93,7 @@
             </div>
         </div>
     </div>
+    <div class="magin"></div>
 </template>
 <script>
 import TopButton from '@/components/TopButton.vue';
@@ -485,7 +486,7 @@ export default {
 
 .weather-container {
     width: 100%;
-    height: 93px;
+    height: 70px;
     margin: 0 auto;
 }
 
@@ -517,5 +518,9 @@ export default {
     text-align: left;
     font-weight: 600;
     margin-left: 7px;
+}
+
+.magin {
+    height: 120px;
 }
 </style>

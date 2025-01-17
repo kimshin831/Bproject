@@ -3,11 +3,10 @@
         <TopButton title="주문완료" />
         <div class="order-complete-container">
             <div class="order">
-                <h1>주문이 완료되었습니다!</h1>
-                <p>
-                    주문해주셔서 감사합니다.<br />
-                    주문번호 : 3548798754684241
-                </p>
+                <div class="order_img">
+                    <img src="../assets/img/OrderComplete.jpg" alt="oreder" />
+                    <p>주문번호 : 3548798754684241</p>
+                </div>
                 <div class="complete">
                     <p>
                         총 결제 금액: <strong>{{ totalAmount.toLocaleString() }} 원</strong>
@@ -55,17 +54,27 @@ export default {
     text-align: center;
     max-width: 600px;
     font-family: Arial, sans-serif;
+    margin: 0 auto;
 }
 
-h1 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    letter-spacing: -0.5px;
+.order_img {
+    width: 100%;
+    margin: 200px auto 0 auto;
+}
+
+.order_img img {
+    width: 300px;
+}
+
+.order_img p {
+    margin-top: -60px;
+    font-size: 1.2rem;
 }
 
 p {
-    margin-top: 15px;
+    margin-top: 0px;
     line-height: 1.8rem;
+    font-size: 1.2rem;
 }
 
 .complete {
