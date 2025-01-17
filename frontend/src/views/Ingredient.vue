@@ -30,22 +30,12 @@
                     </div>
                 </div>
                 <div class="col-auto">
-                    <div class="dropdown">
-                        <button
-                            class="btn btn-secondary dropdown-toggle"
-                            type="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                        >
-                            추천순
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><button class="dropdown-item" type="button">인기순</button></li>
-                            <li><button class="dropdown-item" type="button">신상품순</button></li>
-                            <li><button class="dropdown-item" type="button">저가순</button></li>
-                            <li><button class="dropdown-item" type="button">고가순</button></li>
-                        </ul>
-                    </div>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>추천순</option>
+                        <option value="1">인기순</option>
+                        <option value="2">저가순</option>
+                        <option value="3">고가순</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -61,7 +51,7 @@
                         <p class="item_tag">#000 #000 #000</p>
                         <p class="item_score"><img src="@/assets/img/leaf.svg" alt="score" /> 4.3점</p>
                         <p class="item_title">{{ items.title }}</p>
-                        <p class="item_price">{{ items.price }}</p>
+                        <p class="item_price">{{ items.price }} 원</p>
                     </div>
                 </div>
             </div>
@@ -150,63 +140,28 @@ export default {
     color: #fff;
     font-weight: 700;
 }
-
-.col-auto {
-    margin: 10px 0;
-    width: auto;
-    height: 17px;
+.row {
+    padding-bottom: 5px;
 }
-
+.col-auto {
+    margin: 0;
+    width: auto;
+}
+.form-select {
+    font-size: 0.8em;
+}
 .form-check {
     font-size: 13px;
     letter-spacing: -0.2px;
+    line-height: 35px;
 }
-
+.form-check-input {
+    margin-top: 10px;
+}
 .form-check-input:checked {
     border: 0px;
     border-radius: 3px;
     background: url(@/assets/img/check.jpg) no-repeat center center;
-}
-
-.dropdown {
-    margin-top: -5px;
-}
-
-.dropdown > .btn {
-    width: auto;
-    height: 17px;
-    font-size: 13px;
-    line-height: 2px;
-    background: #fff;
-    border: 0px;
-    color: #000;
-    letter-spacing: -0.2px;
-    padding: 0 3px;
-}
-
-.btn.btn-secondary.dropdown-toggle {
-    background: #fff;
-    color: #000;
-}
-.dropdown-menu {
-    --bs-dropdown-link-active-bg: #fff;
-    --bs-dropdown-link-active-color: #000;
-}
-
-.dropdown-menu.show {
-    background: #fff;
-    padding: 10px;
-}
-
-button.dropdown-item {
-    padding-right: 5.5px;
-    font-size: 13px;
-    line-height: 25px;
-    text-align: right;
-}
-
-button.dropdown-item:root {
-    background: #fff;
 }
 
 /* 콘텐츠 */
@@ -285,10 +240,6 @@ button.dropdown-item:root {
     margin-top: 5px;
     font-size: 1em;
     font-weight: 500;
-}
-
-.itemBox .itemText .item_price::after {
-    content: '원';
 }
 
 .margin {

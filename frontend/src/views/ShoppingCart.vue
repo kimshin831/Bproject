@@ -39,6 +39,7 @@
         <div v-else class="v-else">
             <p>장바구니가 비어 있습니다.</p>
         </div>
+        <div class="bottomBox"></div>
         <div class="buyBox" v-if="cart.length > 0">
             <div class="buyContent">
                 <p>총 {{ totalQuantity }} 개</p>
