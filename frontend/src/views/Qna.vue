@@ -128,7 +128,7 @@
                         aria-controls="collapseFour"
                     >
                         <span>04</span>&ensp; 상품을 구매하고 싶은데 "구매하기" 버튼이 없어요. <br />
-                        어떻게 구매가능한가요?
+                        &ensp;&ensp;어떻게 구매가능한가요?
                     </button>
                 </h2>
                 <div

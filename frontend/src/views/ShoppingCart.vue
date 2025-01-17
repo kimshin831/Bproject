@@ -50,6 +50,7 @@
             </div>
         </div>
     </div>
+    <div class="margin"></div>
 </template>
 
 <script>
@@ -230,9 +231,9 @@ export default {
 
 .itemOptions .numBox {
     display: flex;
-    justify-content: left;
+    justify-content: space-around;
     align-items: center;
-    width: 135px;
+    width: 140px;
     margin-top: 10px;
     padding: 3px 2px;
     background: #ececec;
@@ -315,5 +316,9 @@ export default {
     font-size: 1.25rem;
     letter-spacing: -0.3px;
     font-weight: bold;
+}
+
+.margin {
+    height: 150px;
 }
 </style>

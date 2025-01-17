@@ -308,7 +308,7 @@ body {
     position: relative;
     overflow: hidden;
     width: 100%; /* 너비 설정 */
-    height: 200px; /* 높이 설정 */
+    height: 160px; /* 높이 설정 */
 }
 .slides {
     display: flex;
