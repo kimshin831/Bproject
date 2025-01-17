@@ -4,15 +4,15 @@
             <TopButton :title="isEditMode ? '리뷰 수정' : '리뷰 작성'" />
             <form @submit.prevent="handleSubmit" enctype="multipart/form-data">
                 <div>
-                    <label for="title">제목ㅣ</label>
+                    <label for="title">제목</label>:
                     <input v-model="title" id="title" placeholder="리뷰 제목" required />
                 </div>
                 <div>
-                    <label for="author">작성자ㅣ</label>
+                    <label for="author">작성자</label>:
                     <input v-model="author" id="author" placeholder="작성자 아이디" readonly />
                 </div>
                 <div>
-                    <label for="image">사진 첨부하기ㅣ</label>
+                    <label for="image">사진 첨부하기</label>:
                     <input type="file" id="image" @change="handleFileUpload" accept="image/*" />
                 </div>
                 <div>
@@ -150,10 +150,11 @@ input {
 
 /* 라벨 스타일 */
 label {
+    width: 105px;
     display: inline-block;
     margin-bottom: 5px;
-    font-weight: bold;
-    font-size: 1rem;
+    font-weight: 600;
+    font-size: 0.95rem;
     line-height: 1.8rem;
     color: #333;
 }
@@ -174,6 +175,10 @@ textarea {
     border-radius: 5px;
     font-size: 0.85rem;
     color: #555;
+}
+
+input {
+    font-size: 0.85rem;
 }
 /* 입력 필드 포커스 스타일 */
 input[type='text']:focus,
