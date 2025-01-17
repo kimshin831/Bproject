@@ -3,13 +3,7 @@
         <ul class="nav justify-content-center">
             <!-- 카테고리 버튼 -->
             <li class="nav-item">
-                <button
-                    class="btn btn-primary"
-                    type="button"
-                    data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasWithBothOptions"
-                    aria-controls="offcanvasWithBothOptions"
-                >
+                <button class="btn btn-primary" type="button" @click="toggleOffcanvas">
                     <img src="../assets/img/bars-solid.png" alt="logo" width="19" height="auto" />
                     <p>카테고리</p>
                 </button>
@@ -17,78 +11,73 @@
                 <!-- 오프캔버스 -->
                 <div
                     class="offcanvas offcanvas-start"
-                    data-bs-scroll="true"
-                    data-bs-backdrop="false"
+                    :class="{ show: isOffcanvasOpen }"
                     tabindex="-1"
                     id="offcanvasWithBothOptions"
-                    aria-labelledby="offcanvasWithBothOptionsLabel"
                 >
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    <button type="button" class="btn-close" @click="closeOffcanvas" aria-label="Close"></button>
                     <div class="offcanvas-header">
                         <!-- 아코디언 메뉴 -->
-                        <div class="accordion" id="accordionExample">
+                        <div class="accordion">
                             <!-- BEST ITEM -->
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
                                     <button
                                         class="accordion-button"
-                                        type="button"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target="#collapseOne"
-                                        aria-expanded="true"
-                                        aria-controls="collapseOne"
+                                        :class="{ collapsed: !activeAccordion.includes('collapseOne') }"
+                                        @click="toggleAccordion('collapseOne')"
                                     >
                                         BEST ITEM
                                     </button>
                                 </h2>
                                 <div
                                     id="collapseOne"
-                                    class="accordion-collapse collapse show"
-                                    data-bs-parent="#accordionExample"
+                                    class="accordion-collapse"
+                                    :class="{ show: activeAccordion.includes('collapseOne') }"
                                 >
                                     <div class="accordion-body">
-                                        <router-link class="nav-link" to="/best-item">BEST ITEM</router-link>
+                                        <router-link class="nav-link" to="/best-item" @click.native="closeOffcanvas"
+                                            >BEST ITEM</router-link
+                                        >
                                     </div>
                                 </div>
                             </div>
+                            <!-- 카테고리별 -->
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
                                     <button
-                                        class="accordion-button collapsed"
-                                        type="button"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target="#collapseTwo"
-                                        aria-expanded="false"
-                                        aria-controls="collapseTwo"
+                                        class="accordion-button"
+                                        :class="{ collapsed: !activeAccordion.includes('collapseTwo') }"
+                                        @click="toggleAccordion('collapseTwo')"
                                     >
                                         카테고리별
                                     </button>
                                 </h2>
                                 <div
                                     id="collapseTwo"
-                                    class="accordion-collapse collapse"
-                                    data-bs-parent="#accordionExample"
+                                    class="accordion-collapse"
+                                    :class="{ show: activeAccordion.includes('collapseTwo') }"
                                 >
                                     <div class="accordion-body">
-                                        <router-link class="nav-link" to="/category" @click="offcanvershide"
+                                        <router-link class="nav-link" to="/category" @click.native="closeOffcanvas"
                                             >비누/ 클랜징</router-link
                                         >
-                                        <router-link class="nav-link" to="/category/mask" @click="offcanvershide"
+                                        <router-link class="nav-link" to="" @click.native="closeOffcanvas"
                                             >마스크/ 팩/ 필링</router-link
                                         >
-                                        <router-link class="nav-link" to="/category/toner" @click="offcanvershide"
+                                        <router-link class="nav-link" to="" @click.native="closeOffcanvas"
                                             >스킨/토너/미스트</router-link
                                         >
-                                        <router-link class="nav-link" to="/category/serum" @click="offcanvershide"
+                                        <router-link class="nav-link" to="" @click.native="closeOffcanvas"
                                             >앰플/에센스/세럼</router-link
                                         >
-                                        <router-link class="nav-link" to="/category/moisture" @click="offcanvershide"
+                                        <router-link class="nav-link" to="" @click.native="closeOffcanvas"
                                             >수분젤/에센셜</router-link
                                         >
-                                        <router-link class="nav-link" to="/category/lotion" @click="offcanvershide"
+                                        <router-link class="nav-link" to="" @click.native="closeOffcanvas"
                                             >로션/크림</router-link
                                         >
-                                        <router-link class="nav-link" to="/category/suncare" @click="offcanvershide"
+                                        <router-link class="nav-link" to="" @click.native="closeOffcanvas"
                                             >썬케어</router-link
                                         >
                                     </div>
@@ -97,66 +86,69 @@
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
                                     <button
-                                        class="accordion-button collapsed"
-                                        type="button"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target="#collapseThree"
-                                        aria-expanded="false"
-                                        aria-controls="collapseThree"
+                                        class="accordion-button"
+                                        :class="{ collapsed: !activeAccordion.includes('collapseThree') }"
+                                        @click="toggleAccordion('collapseThree')"
                                     >
                                         기능별
                                     </button>
                                 </h2>
                                 <div
                                     id="collapseThree"
-                                    class="accordion-collapse collapse"
-                                    data-bs-parent="#accordionExample"
+                                    class="accordion-collapse"
+                                    :class="{ show: activeAccordion.includes('collapseThree') }"
                                 >
                                     <div class="accordion-body">
-                                        <a class="nav-link">시카</a>
-                                        <a class="nav-link">미백/ 화이트닝</a>
-                                        <a class="nav-link">장벽케어</a>
-                                        <a class="nav-link">안티에이징</a>
-                                        <a class="nav-link">각질관리</a>
-                                        <a class="nav-link">남성용</a>
+                                        <router-link class="nav-link" to="" @click.native="closeOffcanvas"
+                                            >시카</router-link
+                                        >
+                                        <router-link class="nav-link" to="" @click.native="closeOffcanvas"
+                                            >미백/화이트닝</router-link
+                                        >
+                                        <router-link class="nav-link" to="" @click.native="closeOffcanvas"
+                                            >장벽케어</router-link
+                                        >
+                                        <router-link class="nav-link" to="" @click.native="closeOffcanvas"
+                                            >안티에이징</router-link
+                                        >
+                                        <router-link class="nav-link" to="" @click.native="closeOffcanvas"
+                                            >각질관리</router-link
+                                        >
+                                        <router-link class="nav-link" to="" @click.native="closeOffcanvas"
+                                            >남성용</router-link
+                                        >
                                     </div>
                                 </div>
                             </div>
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
                                     <button
-                                        class="accordion-button collapsed"
-                                        type="button"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target="#collapseFour"
-                                        aria-expanded="false"
-                                        aria-controls="collapseFour"
+                                        class="accordion-button"
+                                        :class="{ collapsed: !activeAccordion.includes('collapseFour') }"
+                                        @click="toggleAccordion('collapseFour')"
                                     >
                                         성분별
                                     </button>
                                 </h2>
                                 <div
                                     id="collapseFour"
-                                    class="accordion-collapse collapse"
-                                    data-bs-parent="#accordionExample"
+                                    class="accordion-collapse"
+                                    :class="{ show: activeAccordion.includes('collapseFour') }"
                                 >
                                     <div class="accordion-body">
-                                        <router-link class="nav-link" to="/ingredient" @click="offcanvershide"
+                                        <router-link class="nav-link" to="/ingredient" @click.native="closeOffcanvas"
                                             >어성초</router-link
                                         >
-                                        <router-link class="nav-link" to="/ingredient/collagen" @click="offcanvershide"
+                                        <router-link class="nav-link" to="" @click.native="closeOffcanvas"
                                             >콜라겐</router-link
                                         >
-                                        <router-link
-                                            class="nav-link"
-                                            to="/ingredient/hyaluronic"
-                                            @click="offcanvershide"
+                                        <router-link class="nav-link" to="" @click.native="closeOffcanvas"
                                             >히알루론산</router-link
                                         >
-                                        <router-link class="nav-link" to="/ingredient/panthenol" @click="offcanvershide"
+                                        <router-link class="nav-link" to="" @click.native="closeOffcanvas"
                                             >판테놀</router-link
                                         >
-                                        <router-link class="nav-link" to="/ingredient/retinol" @click="offcanvershide"
+                                        <router-link class="nav-link" to="" @click.native="closeOffcanvas"
                                             >레티놀</router-link
                                         >
                                     </div>
@@ -165,55 +157,71 @@
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
                                     <button
-                                        class="accordion-button collapsed"
-                                        type="button"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target="#collapseFive"
-                                        aria-expanded="false"
-                                        aria-controls="collapseFive"
+                                        class="accordion-button"
+                                        :class="{ collapsed: !activeAccordion.includes('collapseFive') }"
+                                        @click="toggleAccordion('collapseFive')"
                                     >
                                         고민별
                                     </button>
                                 </h2>
                                 <div
                                     id="collapseFive"
-                                    class="accordion-collapse collapse"
-                                    data-bs-parent="#accordionExample"
+                                    class="accordion-collapse"
+                                    :class="{ show: activeAccordion.includes('collapseFive') }"
                                 >
                                     <div class="accordion-body">
-                                        <a class="nav-link">트러블</a>
-                                        <a class="nav-link">주름</a>
-                                        <a class="nav-link">모공/피지</a>
-                                        <a class="nav-link">수부지</a>
-                                        <a class="nav-link">탈모케어</a>
+                                        <router-link class="nav-link" to="" @click.native="closeOffcanvas"
+                                            >트러블</router-link
+                                        >
+                                        <router-link class="nav-link" to="" @click.native="closeOffcanvas"
+                                            >주름</router-link
+                                        >
+                                        <router-link class="nav-link" to="" @click.native="closeOffcanvas"
+                                            >모공/피지</router-link
+                                        >
+                                        <router-link class="nav-link" to="" @click.native="closeOffcanvas"
+                                            >수부지</router-link
+                                        >
+                                        <router-link class="nav-link" to="" @click.native="closeOffcanvas"
+                                            >탈모케어</router-link
+                                        >
                                     </div>
                                 </div>
                             </div>
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
                                     <button
-                                        class="accordion-button collapsed"
-                                        type="button"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target="#collapseSix"
-                                        aria-expanded="false"
-                                        aria-controls="collapseSix"
+                                        class="accordion-button"
+                                        :class="{ collapsed: !activeAccordion.includes('collapseSix') }"
+                                        @click="toggleAccordion('collapseSix')"
                                     >
                                         Community
                                     </button>
                                 </h2>
                                 <div
                                     id="collapseSix"
-                                    class="accordion-collapse collapse"
-                                    data-bs-parent="#accordionExample"
+                                    class="accordion-collapse"
+                                    :class="{ show: activeAccordion.includes('collapseSix') }"
                                 >
                                     <div class="accordion-body">
-                                        <a class="nav-link">Reviw</a>
-                                        <a @click="Event" class="nav-link">EVENT</a>
-                                        <a class="nav-link">문의하기</a>
-                                        <a class="nav-link">안티에이징</a>
-                                        <a class="nav-link">FAQ</a>
-                                        <a class="nav-link">공지사항</a>
+                                        <router-link class="nav-link" to="" @click.native="closeOffcanvas"
+                                            >리뷰</router-link
+                                        >
+                                        <router-link class="nav-link" to="" @click.native="closeOffcanvas"
+                                            >EVENT</router-link
+                                        >
+                                        <router-link class="nav-link" to="" @click.native="closeOffcanvas"
+                                            >문의하기</router-link
+                                        >
+                                        <router-link class="nav-link" to="" @click.native="closeOffcanvas"
+                                            >안티에이징</router-link
+                                        >
+                                        <router-link class="nav-link" to="" @click.native="closeOffcanvas"
+                                            >FAQ</router-link
+                                        >
+                                        <router-link class="nav-link" to="" @click.native="closeOffcanvas"
+                                            >공지사항</router-link
+                                        >
                                     </div>
                                 </div>
                             </div>
@@ -257,23 +265,40 @@
 </template>
 <script>
 import { useRouter } from 'vue-router';
+import { ref } from 'vue';
 
 export default {
     name: 'footerFix',
     setup() {
-        const router = useRouter();
+        const isOffcanvasOpen = ref(false);
+        const activeAccordion = ref([]);
 
-        // 오프캔버스 닫기 메서드
-        const offcanvershide = () => {
-            const offcanvasElement = document.getElementById('offcanvasWithBothOptions');
-            const offcanvasInstance = bootstrap.Offcanvas.getInstance(offcanvasElement);
-            if (offcanvasInstance) {
-                offcanvasInstance.hide();
+        // 오프캔버스 열기/닫기
+        const toggleOffcanvas = () => {
+            isOffcanvasOpen.value = !isOffcanvasOpen.value;
+        };
+
+        const closeOffcanvas = () => {
+            isOffcanvasOpen.value = false;
+        };
+
+        // 아코디언 토글
+        const toggleAccordion = (id) => {
+            if (activeAccordion.value.includes(id)) {
+                // 이미 열려 있다면 닫기
+                activeAccordion.value = activeAccordion.value.filter((item) => item !== id);
+            } else {
+                // 닫혀 있다면 열기
+                activeAccordion.value = [id];
             }
         };
 
         return {
-            offcanvershide
+            isOffcanvasOpen,
+            activeAccordion,
+            toggleOffcanvas,
+            closeOffcanvas,
+            toggleAccordion
         };
     }
 };
@@ -291,7 +316,6 @@ a {
     bottom: 0;
     background-color: #fff;
     z-index: 1000;
-    box-shadow: 2px 2px 2px 2px gray;
 }
 .nav.justify-content-center {
     width: 100%;
@@ -414,5 +438,20 @@ a {
     line-height: 40px;
     text-align: left;
     margin-left: 5%;
+}
+.accordion-collapse {
+    display: none; /* 기본적으로 닫힌 상태 */
+}
+
+.accordion-collapse.show {
+    display: block; /* 열릴 때 표시 */
+}
+
+.accordion-button.collapsed::after {
+    content: '▼'; /* 닫힌 상태의 화살표 */
+}
+
+.accordion-button:not(.collapsed)::after {
+    content: '▲'; /* 열린 상태의 화살표 */
 }
 </style>

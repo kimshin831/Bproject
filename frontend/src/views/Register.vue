@@ -1,12 +1,12 @@
 <template>
     <div class="signup-container">
-        <button @click="goBack">
+        <button type="button" class="backBtn" @click="goBack">
             <img src="../assets/img/chevron-left-solid.svg" alt="뒤로가기" width="20" height="20" />
         </button>
         <div class="logo">
             <img src="../assets/img/NEDE_logo.png" alt="NEDE logo" />
         </div>
-        <h1>회원가입</h1>
+        <h2>회원가입</h2>
 
         <!-- 메시지 표시 -->
         <div v-if="message" :class="`message ${messageType}`">{{ message }}</div>
@@ -181,11 +181,11 @@ export default {
     max-width: 100px;
     margin-bottom: 20px;
 }
-
-h1 {
-    margin-bottom: 20px;
-    font-size: 24px;
+.signup-container h2 {
+    margin: 7px;
+    font-size: 20px;
     color: #333;
+    text-align: left;
 }
 
 form {
@@ -202,17 +202,18 @@ button {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
-
-button {
-    background-color: #333;
-    color: #fff;
+.backBtn {
     border: none;
-    cursor: pointer;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    display: block;
+    margin-bottom: 30px;
 }
-
 button:disabled {
     background-color: #aaa;
     cursor: not-allowed;
+    color: #fff;
 }
 
 .checkbox-group {
