@@ -82,18 +82,22 @@ export default {
 }
 
 button {
-    border: none;
+    border: 1px solid #a68151;
     background: none;
     float: right;
     margin: 20px 7px 0 7px;
-    font-size: 0.85rem;
-    background: #666;
-    padding: 7px 12px 7px 12px;
-    color: #fff;
+    font-size: 0.8rem;
+    padding: 4px 7px;
+    color: #a68151;
     font-weight: bold;
     box-sizing: border-box;
     border-radius: 5px;
     letter-spacing: -0.1px;
+}
+
+button:hover {
+    background: #a68151;
+    color: #fff;
 }
 
 .reviewItem {

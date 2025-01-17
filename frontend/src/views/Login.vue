@@ -1,7 +1,7 @@
 <template>
     <div class="back">
         <button class="back_btn" @click="goBack" style="background-color: #fff">
-            <img src="../assets/img/chevron-left-solid.svg" alt="뒤로가기" width="30" height="30" />
+            <img src="../assets/img/chevron-left-solid.svg" alt="뒤로가기" width="20" height="20" />
         </button>
     </div>
     <div class="logo">
@@ -20,16 +20,18 @@
                 <label> <input type="checkbox" v-model="form.autoLogin" /> 자동로그인 </label>
                 <label> <input type="checkbox" v-model="form.saveId" /> 아이디 저장 </label>
             </div>
-
-            <button class="login login_bg" type="submit" :disabled="loading">로그인</button>
-            <button class="snslogin login_bg" type="button" @click="Easylogin">간편 로그인</button>
-
-            <div class="links">
-                <button @click="navigateTo('/register')">회원가입</button>
-                <button @click="navigateTo('#')">아이디 찾기</button>
-                <button @click="navigateTo('#')">비밀번호 찾기</button>
-            </div>
         </form>
+
+        <div class="login_easy">
+            <button class="login_bg" type="submit" :disabled="loading">로그인</button>
+            <button class="login_bg" type="button" @click="Easylogin">간편 로그인</button>
+        </div>
+
+        <div class="links">
+            <button @click="navigateTo('/register')">회원가입</button>
+            <button @click="navigateTo('#')">아이디 찾기</button>
+            <button @click="navigateTo('#')">비밀번호 찾기</button>
+        </div>
 
         <footer>
             <span>ver.1.1.1 업데이트</span>
@@ -112,22 +114,18 @@ export default {
 
 <style scoped>
 .back button {
-    position: relative;
-    top: 20px;
-    left: 20px;
+    margin: 18px 0 0 13px;
 }
 
 .login-container {
     max-width: 400px;
     margin: 0 auto;
-    padding: 50px;
-    text-align: center;
-    font-family: Arial, sans-serif;
 }
 
 .logo {
     width: 400px;
     margin: 0 auto;
+    margin-bottom: 25px;
 }
 
 .logo img {
@@ -164,15 +162,14 @@ button:disabled {
 
 .options {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-bottom: 15px;
-    margin-top: -5px;
 }
 
 .links {
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
+    margin-top: 12px;
 }
 
 .links button {
@@ -180,19 +177,20 @@ button:disabled {
 }
 
 .links button:hover {
-    background-color: #9e9e9e;
+    background-color: #777;
 }
 
-.login {
-    margin-top: 50px;
+.login_easy {
+    margin-top: 20px;
 }
 
 .login_bg {
+    width: 100%;
     background-color: #acacac;
 }
 
 .login_bg:hover {
-    background-color: #9e9e9e;
+    background-color: #777;
 }
 
 footer {

@@ -1,10 +1,10 @@
 <template>
+    <div class="back">
+        <button class="back_btn" @click="goBack" style="background-color: #fff">
+            <img src="../assets/img/chevron-left-solid.svg" alt="뒤로가기" width="20" height="20" />
+        </button>
+    </div>
     <div class="login-page">
-        <div class="back">
-            <button class="back_btn" @click="goBack" style="background-color: #fff">
-                <img src="../assets/img/chevron-left-solid.svg" alt="뒤로가기" width="30" height="30" />
-            </button>
-        </div>
         <div class="logo">
             <img src="../assets/img/nede_3.jpg" alt="NEDE logo" />
         </div>
@@ -19,13 +19,7 @@
         <!-- 카카오 로그인 -->
         <div>
             <a id="kakao-login-btn" v-if="!isLoggedIn.kakao" @click="kakaoLogin">
-                <img
-                    src="../assets/img/kakaologin.png"
-                    width="280"
-                    height="53"
-                    alt="카카오 로그인 버튼"
-                    style="cursor: pointer"
-                />
+                <img src="../assets/img/kakaologin.png" width="280" alt="카카오 로그인 버튼" style="cursor: pointer" />
             </a>
         </div>
 
@@ -252,10 +246,15 @@ export default {
 </script>
 
 <style scoped>
+.login-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
 .back button {
-    position: relative;
-    top: 30px;
-    left: -205px;
+    margin: 26px 0 0 17px;
     border: none;
 }
 
@@ -267,19 +266,12 @@ export default {
 .logo img {
     display: block;
     margin: 0 auto;
-    margin-top: 50px;
-}
-
-.login-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
+    margin-top: 60px;
+    margin-bottom: 20px;
 }
 
 .google-button,
 .logout-button {
-    padding: 10px 20px;
     background-color: #fff;
     color: white;
     border: none;

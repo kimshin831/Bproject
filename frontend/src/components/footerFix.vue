@@ -316,6 +316,7 @@ a {
     bottom: 0;
     background-color: #fff;
     z-index: 1000;
+    box-shadow: 2px 2px 2px 2px gray;
 }
 .nav.justify-content-center {
     width: 100%;

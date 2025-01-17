@@ -113,39 +113,56 @@
     </router-link>
 
     <!-- 이벤트 -->
-    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" style="margin-top: 30px">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="../assets/img/event11.jpg" class="d-block w-100" alt="event1" />
-            </div>
-            <div class="carousel-item">
-                <img src="../assets/img/event22.jpg" class="d-block w-100" alt="event2" />
-            </div>
-            <div class="carousel-item">
-                <img src="../assets/img/event33.jpg" class="d-block w-100" alt="event3" />
+    <div class="image-slider">
+        <div class="slides" :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
+            <div v-for="(slide, index) in slides" :key="index" class="slide">
+                <img :src="slide" alt="Slide image" />
             </div>
         </div>
-        <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#carouselExampleAutoplaying"
-            data-bs-slide="prev"
-        >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselExampleAutoplaying"
-            data-bs-slide="next"
-        >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+        <button @click="prevSlide" class="button2"><</button>
+        <button @click="nextSlide" class="button2">></button>
     </div>
     <div class="margin"></div>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            slides: [
+                require('@/assets/img/event11.jpg'),
+                require('@/assets/img/event22.jpg'),
+                require('@/assets/img/event33.jpg')
+            ],
+            currentSlide: 0,
+            intervalId: null // 자동 전환을 위한 interval ID
+        };
+    },
+    methods: {
+        nextSlide() {
+            this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+        },
+        prevSlide() {
+            this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
+        },
+        startAutoSlide() {
+            this.intervalId = setInterval(() => {
+                this.nextSlide();
+            }, 4000);
+        },
+        stopAutoSlide() {
+            clearInterval(this.intervalId);
+            this.intervalId = null;
+        }
+    },
+    mounted() {
+        this.startAutoSlide(); // 컴포넌트가 마운트될 때 자동 전환 시작
+    },
+    beforeDestroy() {
+        this.stopAutoSlide(); // 컴포넌트가 파괴되기 전 자동 전환 멈춤
+    }
+};
+</script>
 
 <style scoped>
 a {
@@ -162,12 +179,11 @@ body {
 .navbar.bg-body-tertiary {
     background: #fff;
     padding: 0;
-    margin: 0.5rem 0;
+    margin: 1rem 0 0.5rem 0.5rem;
 }
 
 .container-fluid {
-    position: relative;
-    padding: 0 10px;
+    height: 50px;
     background: #fff;
 }
 
@@ -175,8 +191,12 @@ body {
     margin-right: 12px;
 }
 
+.logo img {
+    height: 25px;
+}
+
 .d-flex {
-    width: 206px;
+    width: 170px;
     height: 35px;
     position: relative;
     border: 1px solid black;
@@ -185,7 +205,7 @@ body {
 }
 
 .form-control.me-2 {
-    width: 206px;
+    width: 160px;
     height: auto;
     border: none;
     background: none;
@@ -193,13 +213,11 @@ body {
 
 .btn.btn-outline-success {
     position: absolute;
-    top: 7px;
-    right: 0;
+    left: 140px;
     width: 25px;
     height: 25px;
     background: url(@/assets/img/search.svg) no-repeat;
     text-indent: -9999px;
-    z-index: 50;
     border: none;
 }
 
@@ -215,9 +233,14 @@ body {
     float: left;
 }
 
+.carousel-item {
+    width: 100%;
+    height: 63vh;
+}
+
 .carousel-item > img {
     width: 100%;
-    height: 390px;
+    height: 80vh;
     object-fit: cover;
 }
 
@@ -269,6 +292,7 @@ body {
     height: 115px;
     margin: 0 auto;
     margin-top: 15px;
+    margin-bottom: 30px;
 }
 
 .skintest img {
@@ -279,17 +303,61 @@ body {
     object-position: top;
 }
 
-.carousel-item {
+/* 이벤트 배너 */
+.image-slider {
+    position: relative;
+    overflow: hidden;
+    width: 100%; /* 너비 설정 */
+    height: 200px; /* 높이 설정 */
+}
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+.slide {
+    min-width: 100%;
+    height: 100%;
+}
+.slide img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover; /* 이미지 비율 유지 */
 }
 
-#carouselExampleAutoplaying:nth-child(odd) .carousel-inner .carousel-item > img {
-    width: 100%;
-    height: 115px;
-    object-fit: cover;
+button {
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    height: 30px;
+    transform: translateY(-50%);
+    border: none;
+    cursor: pointer;
+    z-index: 1;
 }
 
+.button2 {
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    height: 30px;
+    transform: translateY(-50%);
+    color: #555;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.button2:hover {
+    background: #888;
+    color: white;
+}
+button:nth-child(2) {
+    left: 10px;
+}
+button:nth-child(3) {
+    right: 10px;
+}
 .margin {
     height: 63px;
 }

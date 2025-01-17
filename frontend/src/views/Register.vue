@@ -1,8 +1,8 @@
 <template>
+    <button type="button" class="backBtn" @click="goBack">
+        <img src="../assets/img/chevron-left-solid.svg" alt="뒤로가기" width="20" height="20" />
+    </button>
     <div class="signup-container">
-        <button type="button" class="backBtn" @click="goBack">
-            <img src="../assets/img/chevron-left-solid.svg" alt="뒤로가기" width="20" height="20" />
-        </button>
         <div class="logo">
             <img src="../assets/img/NEDE_logo.png" alt="NEDE logo" />
         </div>
@@ -169,6 +169,14 @@ export default {
 </script>
 
 <style scoped>
+.backBtn {
+    border: none;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    display: block;
+    margin: 27px 0 30px 23px;
+}
 .signup-container {
     max-width: 400px;
     margin: 0 auto;
@@ -202,14 +210,7 @@ button {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
-.backBtn {
-    border: none;
-    background-color: #fff;
-    margin: 0;
-    padding: 0;
-    display: block;
-    margin-bottom: 30px;
-}
+
 button:disabled {
     background-color: #aaa;
     cursor: not-allowed;

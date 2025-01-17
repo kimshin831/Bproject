@@ -180,7 +180,7 @@ export default {
 
 .itemName {
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 1rem;
     letter-spacing: -1px;
     margin-bottom: 20px;
 }
@@ -231,9 +231,9 @@ export default {
     display: flex;
     justify-content: left;
     align-items: center;
-    width: 170px;
+    width: 135px;
     margin-top: 10px;
-    padding: 3px 5px;
+    padding: 3px 2px;
     background: #ececec;
     text-align: left;
     border-radius: 3px;
@@ -246,7 +246,7 @@ export default {
 .numBox button {
     width: auto;
     font-size: 1.1rem;
-    margin: 3px 7px;
+    margin: 3px 0;
     border: none;
     background: none;
 }
