@@ -21,6 +21,9 @@
             <button @click="addToCart">장바구니 담기</button>
             <button @click="buyNow">바로 구매하기</button>
         </div>
+        <div class="item_content">
+            <p>{{ product.content }}</p>
+        </div>
     </div>
 </template>
 <script>
@@ -120,9 +123,9 @@ export default {
 }
 
 .itemBox .itemText .item_title {
-    font-size: 1.2em;
+    font-size: 1.1em;
     letter-spacing: -0.5px;
-    font-weight: 700;
+    font-weight: 600;
 }
 .itemBox .itemText .item_price {
     margin-top: 22px;
@@ -158,7 +161,8 @@ export default {
 
 .buttons {
     text-align: center;
-    margin-top: 70px;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
 
 .buttons button {
@@ -170,5 +174,15 @@ export default {
     color: white;
     font-weight: bold;
     cursor: pointer;
+    transition: all 0.3s;
+}
+.buttons button:hover {
+    background-color: #8a8a8a;
+}
+.item_content {
+    margin: 10px;
+    padding-top: 20px;
+    border-top: 1px solid #999;
+    border-bottom: 1px solid #999;
 }
 </style>

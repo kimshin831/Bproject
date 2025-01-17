@@ -34,9 +34,11 @@
         </div>
 
         <footer>
-            <span>ver.1.1.1 업데이트</span>
-            <span>고객센터</span>
-            <span>공지사항</span>
+            <div><span>ver.1.1.1 업데이트</span></div>
+            <div>
+                <span>고객센터 ㅣ </span>
+                <span>공지사항</span>
+            </div>
         </footer>
     </div>
 </template>
@@ -118,14 +120,13 @@ export default {
 }
 
 .login-container {
-    max-width: 400px;
+    max-width: 350px;
     margin: 0 auto;
 }
-
 .logo {
-    width: 400px;
+    width: 350px;
     margin: 0 auto;
-    margin-bottom: 25px;
+    margin-bottom: 60px;
 }
 
 .logo img {
@@ -141,7 +142,7 @@ form {
 
 input,
 button {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -174,6 +175,8 @@ button:disabled {
 
 .links button {
     background-color: #acacac;
+    width: 110px;
+    font-size: 0.9em;
 }
 
 .links button:hover {
@@ -181,7 +184,7 @@ button:disabled {
 }
 
 .login_easy {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .login_bg {
@@ -199,5 +202,7 @@ footer {
     display: flex;
     justify-content: space-between;
     color: #555;
+    border-top: 1px solid #adadad;
+    padding-top: 15px;
 }
 </style>

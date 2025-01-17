@@ -261,6 +261,7 @@ export default {
 .logo {
     width: 400px;
     margin: 0 auto;
+    margin-bottom: 50px;
 }
 
 .logo img {
