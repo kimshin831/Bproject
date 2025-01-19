@@ -55,7 +55,7 @@ export default {
     }
 };
 </script>
-<style scoped>
+<style> /* marker css넣기 위한 스코프 해제 */
 .map-container {
     width: 100%;
     margin: 0 auto;

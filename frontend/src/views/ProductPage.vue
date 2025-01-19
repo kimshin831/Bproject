@@ -25,6 +25,7 @@
             <p>{{ product.content }}</p>
         </div>
     </div>
+    <div class="margin"></div>
 </template>
 <script>
 import TopButton from '../components/TopButton.vue';
@@ -184,5 +185,8 @@ export default {
     padding-top: 20px;
     border-top: 1px solid #999;
     border-bottom: 1px solid #999;
+}
+.margin {
+    height: 67px;
 }
 </style>

@@ -113,9 +113,9 @@
     </router-link>
 
     <!-- 이벤트 -->
-    <div class="image-slider">
+    <div class="image-slider" @mouseover="stopAutoSlide" @mouseleave="startAutoSlide">
         <div class="slides" :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
-            <div v-for="(slide, index) in slides" :key="index" class="slide">
+            <div v-for="(slide, index) in slides" :key="index" class="slide" @click="eventImg">
                 <img :src="slide" alt="Slide image" />
             </div>
         </div>
@@ -153,6 +153,9 @@ export default {
         stopAutoSlide() {
             clearInterval(this.intervalId);
             this.intervalId = null;
+        },
+        eventImg(){
+            this.$router.push('/event')
         }
     },
     mounted() {
@@ -308,7 +311,7 @@ body {
     position: relative;
     overflow: hidden;
     width: 100%; /* 너비 설정 */
-    height: 160px; /* 높이 설정 */
+    height: 234px; /* 높이 설정 */
 }
 .slides {
     display: flex;
@@ -317,6 +320,7 @@ body {
 .slide {
     min-width: 100%;
     height: 100%;
+    cursor: pointer;
 }
 .slide img {
     width: 100%;

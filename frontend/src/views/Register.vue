@@ -55,6 +55,7 @@
             <button type="submit" :disabled="!isFormValid">가입하기</button>
         </form>
     </div>
+    <div class="margin"></div>
 </template>
 
 <script>
@@ -266,5 +267,8 @@ button:disabled {
     color: red;
     font-size: 14px;
     margin-bottom: 10px;
+}
+.margin {
+    height: 67px;
 }
 </style>

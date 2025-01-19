@@ -188,6 +188,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 10px 0;
 }
 .bottom-Btn {
     border: none;
