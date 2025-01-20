@@ -20,12 +20,11 @@
                 <label> <input type="checkbox" v-model="form.autoLogin" /> 자동로그인 </label>
                 <label> <input type="checkbox" v-model="form.saveId" /> 아이디 저장 </label>
             </div>
+            <div class="login_easy">
+                <button class="login_bg" type="submit" :disabled="loading">로그인</button>
+                <button class="login_bg" type="button" @click="Easylogin">간편 로그인</button>
+            </div>
         </form>
-
-        <div class="login_easy">
-            <button class="login_bg" type="submit" :disabled="loading">로그인</button>
-            <button class="login_bg" type="button" @click="Easylogin">간편 로그인</button>
-        </div>
 
         <div class="links">
             <button @click="navigateTo('/register')">회원가입</button>
@@ -41,6 +40,7 @@
             </div>
         </footer>
     </div>
+    <div class="margin"></div>
 </template>
 
 <script>
@@ -204,5 +204,8 @@ footer {
     color: #555;
     border-top: 1px solid #adadad;
     padding-top: 15px;
+}
+.margin {
+    height: 67px;
 }
 </style>
