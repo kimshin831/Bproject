@@ -135,13 +135,15 @@ export default {
     height: 29px;
     border: 1px solid #b8b8b8;
     font-size: 0.9em;
+    padding-left: 5px;
 }
 .search-button {
     border: 1px solid #a68151;
     height: 29px;
     font-size: 0.8rem;
     color: #f3f3f3;
-    width: 45px;
+    width: auto;
+    padding: 0 10px;
     background-color: #a68151;
     font-weight: bold;
     letter-spacing: -0.1px;

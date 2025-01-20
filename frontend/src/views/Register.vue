@@ -238,6 +238,7 @@ button:disabled {
 .birthdate-group select {
     flex: 1;
     margin-right: 5px;
+    color: #333;
 }
 
 .birthdate-group select:last-child {

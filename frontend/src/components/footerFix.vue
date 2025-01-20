@@ -331,11 +331,13 @@ a {
     float: left;
     text-align: center;
     font-size: 9.8pt;
+    display: block;
 }
 
 .nav-link {
     padding: 5px;
     color: #000;
+    text-align: center;
 }
 
 .nav-link:hover {
@@ -361,9 +363,10 @@ a {
 }
 
 .nav_icon {
-    width: 78.5px;
+    width: 100%;
     height: 63px;
     line-height: 7px;
+    text-align: center;
 }
 
 .nav_icon > img {

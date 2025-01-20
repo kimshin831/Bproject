@@ -6,18 +6,22 @@
                 <img v-if="Object.values(isLoggedIn).some((v) => v)" src="../assets/img/Bear.png" alt="곰" />
                 <img v-else src="../assets/img/profile.png" alt="물음표" />
             </div>
-            <div class="title">
-                <!-- 로그인 상태에 따라 메시지 변경 -->
-                <template v-if="Object.values(isLoggedIn).some((v) => v)">
-                    <template v-if="userName && userName.trim() !== ''">{{ userName }}님 환영합니다.</template>
-                    <template v-else>회원님 환영합니다.</template>
-                </template>
-                <template v-else>로그인을 해주세요.</template>
-            </div>
-            <!-- 로그인 상태에 따라 버튼 변경 -->
-            <div>
-                <a class="login" v-if="Object.values(isLoggedIn).some((v) => v)" @click="toggleLogin"> 로그아웃 > </a>
-                <a class="login" v-else @click="Login"> 로그인 > </a>
+            <div class="login-container">
+                <div class="title">
+                    <!-- 로그인 상태에 따라 메시지 변경 -->
+                    <template v-if="Object.values(isLoggedIn).some((v) => v)">
+                        <template v-if="userName && userName.trim() !== ''">{{ userName }}님 환영합니다.</template>
+                        <template v-else>회원님 환영합니다.</template>
+                    </template>
+                    <template v-else>로그인을 해주세요.</template>
+                </div>
+                <!-- 로그인 상태에 따라 버튼 변경 -->
+                <div class="loginBtn">
+                    <a class="login" v-if="Object.values(isLoggedIn).some((v) => v)" @click="toggleLogin">
+                        로그아웃 >
+                    </a>
+                    <a class="login" v-else @click="Login"> 로그인 > </a>
+                </div>
             </div>
         </div>
         <div class="stats">
@@ -386,8 +390,8 @@ export default {
 
 .profile {
     height: 100px;
-    margin-top: 37px;
-    line-height: 2rem;
+    margin-top: 30px;
+    display: flex;
 }
 
 .profile img {
@@ -409,9 +413,11 @@ export default {
     line-height: 30px;
     text-align: left;
 }
-
+.loginBtn {
+    margin-top: 3px;
+}
 .login {
-    width: 60%;
+    width: auto;
     float: left;
     text-align: left;
     font-size: 1.1rem;

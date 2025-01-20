@@ -38,7 +38,7 @@
                             :aria-expanded="activeIndex === 0"
                             aria-controls="collapseOne"
                         >
-                            <span>01</span>&ensp; 반품은 언제까지 가능한가요? 비용이 따로 드나요?
+                            <span>01</span>반품은 언제까지 가능한가요? 비용이 따로 드나요?
                         </button>
                     </h2>
                     <div
@@ -73,7 +73,7 @@
                             :aria-expanded="activeIndex === 1"
                             aria-controls="collapseTwo"
                         >
-                            <span>02</span>&ensp; 주문을 잘못해서 취소하고 싶어요..
+                            <span>02</span>주문을 잘못해서 취소하고 싶어요..
                         </button>
                     </h2>
                     <div
@@ -104,7 +104,7 @@
                             :aria-expanded="activeIndex === 2"
                             aria-controls="collapseThree"
                         >
-                            <span>03</span>&ensp; 배송조회는 어떻게 하나요?
+                            <span>03</span>배송조회는 어떻게 하나요?
                         </button>
                     </h2>
                     <div
@@ -132,8 +132,7 @@
                             :aria-expanded="activeIndex === 3"
                             aria-controls="collapseFour"
                         >
-                            <span>04</span>&ensp; 상품을 구매하고 싶은데 "구매하기" 버튼이 없어요. <br />
-                            &ensp;&ensp;어떻게 구매가능한가요?
+                            <span>04</span>상품을 구매하고 싶은데 "구매하기" 버튼이 없어요. 어떻게 구매가능한가요?
                         </button>
                     </h2>
                     <div
@@ -256,9 +255,10 @@ export default {
 }
 
 .accordion-header span {
+    display: block;
     font-size: 18px;
     font-weight: 700;
-    margin-right: 10px;
+    margin-right: 20px;
 }
 
 .accordion-header button {

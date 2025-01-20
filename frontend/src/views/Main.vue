@@ -2,7 +2,7 @@
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
             <div class="logo">
-                <router-link to="/main"><img src="../assets/img/logo.png" alt="logo" /></router-link>
+                <router-link to="/"><img src="../assets/img/logo.png" alt="logo" /></router-link>
             </div>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />

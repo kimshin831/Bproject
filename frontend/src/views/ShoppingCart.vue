@@ -158,6 +158,7 @@ export default {
 
 .check {
     margin-left: 15px;
+    display: flex;
 }
 .check input {
     margin-right: 5px;
@@ -168,6 +169,7 @@ export default {
     background: none;
     margin-right: 10px;
     padding: 0;
+    color: black;
 }
 
 /* 상품  */
@@ -231,7 +233,7 @@ export default {
 
 .itemOptions .numBox {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     width: 140px;
     margin-top: 10px;
@@ -242,7 +244,9 @@ export default {
 }
 
 .itemOptions .numBox p {
+    width: 70px;
     font-size: 0.93rem;
+    text-align: center;
 }
 
 .numBox button {
@@ -251,10 +255,13 @@ export default {
     margin: 3px 0;
     border: none;
     background: none;
+    color: black;
 }
 
 .item_qu {
     float: right;
+    width: 70px;
+    text-align: center;
 }
 .item_qu button {
     color: black;
@@ -306,6 +313,7 @@ export default {
     border: none;
     border-radius: 5px;
     font-weight: bold;
+    color: black;
 }
 .v-else {
     height: 100vh;

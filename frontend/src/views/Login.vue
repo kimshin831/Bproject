@@ -204,6 +204,7 @@ footer {
     color: #555;
     border-top: 1px solid #adadad;
     padding-top: 15px;
+    margin-bottom: 15px;
 }
 .margin {
     height: 67px;
