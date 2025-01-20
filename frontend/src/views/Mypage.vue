@@ -3,7 +3,8 @@
         <TopButton title="마이페이지" />
         <div class="profile">
             <div class="userIcon">
-                <img src="@/assets/img/user.svg" alt="user" />
+                <img v-if="Object.values(isLoggedIn).some((v) => v)" src="../assets/img/Bear.png" alt="곰" />
+                <img v-else src="../assets/img/profile.png" alt="물음표" />
             </div>
             <div class="title">
                 <!-- 로그인 상태에 따라 메시지 변경 -->

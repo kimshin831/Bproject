@@ -178,9 +178,10 @@ export default {
     height: 30px;
     border-radius: 50%;
     border: 1px solid #ccc;
+    color: black;
+    margin: 0 5px;
     background: none;
-    margin: 0 7px;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     text-align: center;
     line-height: 0px;
 }

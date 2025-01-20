@@ -25,7 +25,7 @@
                         <p>{{ item.price.toLocaleString() }} 원</p>
                         <p>1일 이내 발송 예정</p>
                         <div class="numBox">
-                            <p>수량변경</p>
+                            <p>수량</p>
                             <div class="item_qu">
                                 <button @click="updateQuantity(item, item.quantity - 1)">-</button>
                                 <span>{{ item.quantity }}</span>
@@ -242,7 +242,7 @@ export default {
 }
 
 .itemOptions .numBox p {
-    font-size: 0.95rem;
+    font-size: 0.93rem;
 }
 
 .numBox button {
@@ -256,7 +256,9 @@ export default {
 .item_qu {
     float: right;
 }
-
+.item_qu button {
+    color: black;
+}
 .itemOptions span {
     font-weight: bold;
     font-size: 1.1rem;
@@ -319,6 +321,6 @@ export default {
 }
 
 .margin {
-    height: 150px;
+    height: 140px;
 }
 </style>
