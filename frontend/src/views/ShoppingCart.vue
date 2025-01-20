@@ -140,7 +140,7 @@ export default {
     watch: {
         cart: {
             handler() {
-                this.updateAllSelected(); // 장바구니 데이터 변경 시 전체선택 상태 업데이트
+                localStorage.setItem('cart', JSON.stringify(this.cart)); // 장바구니 데이터 변경 시 전체선택 상태 업데이트
             },
             deep: true
         }

@@ -173,6 +173,7 @@ export default {
                 alert('필수 동의 항목을 모두 체크해주세요.');
                 return;
             }
+            localStorage.removeItem('cart');
             alert('결제가 완료되었습니다! 감사합니다.');
             this.$router.push({
                 name: 'OrderComplete',

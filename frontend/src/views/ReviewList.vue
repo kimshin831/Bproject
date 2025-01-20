@@ -3,12 +3,35 @@
         <TopButton title="리얼리뷰" />
         <div v-if="isLoading">리뷰를 불러오는 중...</div>
         <div v-else>
-            <button type="button" @click="navigateToCreate">리뷰작성하기</button>
+            <div class="reviewTop">
+                <div class="search-container">
+                    <input
+                        type="text"
+                        v-model="searchQuery"
+                        placeholder="리뷰 제목 입력"
+                        class="search-box"
+                        @keyup.enter="applySearch"
+                    />
+                    <button @click="applySearch" class="search-button">검색</button>
+                </div>
+
+                <div v-if="filteredPosts.length > 0">
+                    <!-- 검색된 게시글만 표시 -->
+                    <div v-for="post in filteredPosts" :key="post.id" class="post-item">
+                        <PostItem :post="post" @postDeleted="removePost" />
+                    </div>
+                </div>
+                <div v-else class="no-posts">검색 결과가 없습니다.</div>
+
+                <div class="review-bt-container">
+                    <button class="reviewBtn" type="button" @click="navigateToCreate">리뷰작성하기 ></button>
+                </div>
+            </div>
             <!-- 리뷰 목록 -->
             <div class="contents">
                 <div
                     class="reviewItem"
-                    v-for="review in reviews"
+                    v-for="review in filteredPosts"
                     :key="review.id"
                     @click="navigateToDetail(review.user_id)"
                 >
@@ -39,7 +62,9 @@ export default {
     data() {
         return {
             reviews: [], // 리뷰 데이터를 저장
-            isLoading: false // 로딩 상태 추가
+            isLoading: false,
+            filteredPosts: [], // 검색 결과 게시글 목록
+            searchQuery: ''
         };
     },
     methods: {
@@ -52,6 +77,7 @@ export default {
                     throw new Error(`리뷰 데이터를 가져오는 데 실패했습니다. 상태 코드: ${response.status}`);
                 }
                 this.reviews = await response.json();
+                this.filteredPosts = this.reviews; // 초기에는 전체 게시글 표시
             } catch (error) {
                 console.error('리뷰 데이터를 가져오는 중 오류 발생:', error);
                 alert('리뷰 데이터를 불러오는 데 실패했습니다. 다시 시도해주세요.');
@@ -66,6 +92,19 @@ export default {
         // 리뷰 상세 페이지로 이동
         navigateToDetail(reviewId) {
             this.$router.push(`/reviews/${reviewId}`);
+        },
+        // 검색 실행 메서드
+        applySearch() {
+            const query = this.searchQuery.toLowerCase().trim();
+            if (query) {
+                // 검색어가 있을 경우 필터링
+                this.filteredPosts = this.reviews.filter(
+                    (review) => review.title && review.title.toLowerCase().includes(query)
+                );
+            } else {
+                // 검색어가 없으면 전체 게시글 표시
+                this.filteredPosts = this.reviews;
+            }
         }
     },
     mounted() {
@@ -81,12 +120,39 @@ export default {
     margin: 0 auto;
     overflow: hidden;
 }
-
-button {
+.reviewTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0 15px 0;
+}
+.search-container {
+    display: flex;
+    align-items: center;
+}
+.search-container input {
+    outline: none;
+    height: 29px;
+    border: 1px solid #b8b8b8;
+    font-size: 0.9em;
+}
+.search-button {
     border: 1px solid #a68151;
+    height: 29px;
+    font-size: 0.8rem;
+    color: #f3f3f3;
+    width: 45px;
+    background-color: #a68151;
+    font-weight: bold;
+    letter-spacing: -0.1px;
+    transition: all 0.3s;
+}
+.search-button:hover {
+    background: #8d6c40;
+}
+.reviewBtn {
+    border: none;
     background: none;
-    float: right;
-    margin: 20px 7px 0 7px;
     font-size: 0.8rem;
     padding: 4px 7px;
     color: #a68151;
@@ -94,11 +160,10 @@ button {
     box-sizing: border-box;
     border-radius: 5px;
     letter-spacing: -0.1px;
+    transition: all 0.3s;
 }
-
-button:hover {
-    background: #a68151;
-    color: #fff;
+.reviewBtn:hover {
+    color: #8d6c40;
 }
 
 .reviewItem {
