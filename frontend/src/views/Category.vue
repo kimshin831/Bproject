@@ -54,8 +54,8 @@
                                         : require('@/assets/img/heart-regular.svg')
                                 "
                                 alt="하트이미지"
-                                width="20"
-                                height="20"
+                                width="17"
+                                height="17"
                             />
                         </div>
                         <p class="item_score"><img src="@/assets/img/leaf.svg" alt="score" /> 4.3점</p>
@@ -282,9 +282,10 @@ button.dropdown-item:root {
     position: absolute;
     width: 30px;
     height: 30px;
-    right: 5px;
+    right: 0;
     top: 0;
     z-index: 100;
+    filter: invert(13%) sepia(90%) saturate(7298%) hue-rotate(355deg) brightness(90%) contrast(125%);
 }
 .margin {
     height: 67px;

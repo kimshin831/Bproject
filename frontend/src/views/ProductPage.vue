@@ -15,8 +15,8 @@
                                 : require('@/assets/img/heart-regular.svg')
                         "
                         alt="하트이미지"
-                        width="25"
-                        height="25"
+                        width="21"
+                        height="21"
                     />
                 </div>
                 <p class="item_score"><img src="@/assets/img/leaf.svg" alt="score" /> 4.3점</p>
@@ -148,6 +148,7 @@ export default {
     width: 30px;
     height: 30px;
     cursor: pointer;
+    filter: invert(13%) sepia(90%) saturate(7298%) hue-rotate(355deg) brightness(90%) contrast(125%);
 }
 .itemBox .itemText .item_score {
     display: flex;
