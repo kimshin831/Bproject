@@ -160,7 +160,7 @@ label {
 }
 
 input#image {
-    width: 60%;
+    width: 50%;
     border: none;
 }
 
@@ -190,7 +190,7 @@ textarea:focus {
 
 /* 텍스트 에어리어 높이 조정 */
 textarea {
-    height: 56vh;
+    height: 50vh;
     resize: vertical;
 }
 
