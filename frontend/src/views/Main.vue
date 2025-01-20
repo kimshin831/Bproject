@@ -154,8 +154,8 @@ export default {
             clearInterval(this.intervalId);
             this.intervalId = null;
         },
-        eventImg(){
-            this.$router.push('/event')
+        eventImg() {
+            this.$router.push('/event');
         }
     },
     mounted() {
@@ -216,6 +216,7 @@ body {
 
 .btn.btn-outline-success {
     position: absolute;
+    top: 18px;
     left: 140px;
     width: 25px;
     height: 25px;
@@ -311,11 +312,13 @@ body {
     position: relative;
     overflow: hidden;
     width: 100%; /* 너비 설정 */
-    height: 234px; /* 높이 설정 */
+    height: 170px; /* 높이 설정 */
 }
 .slides {
     display: flex;
     transition: transform 0.5s ease-in-out;
+    width: 100%;
+    height: 170px;
 }
 .slide {
     min-width: 100%;
@@ -363,6 +366,6 @@ button:nth-child(3) {
     right: 10px;
 }
 .margin {
-    height: 60px;
+    height: 63px;
 }
 </style>
