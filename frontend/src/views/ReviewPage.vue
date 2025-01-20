@@ -20,12 +20,8 @@
                     </button>
                 </div>
                 <div class="buttons" v-if="isOwner">
-                    <button type="button" @click="navigateToEdit">수정</button>ㅣ<button
-                        type="button"
-                        @click="deleteReview"
-                    >
-                        삭제
-                    </button>
+                    <button type="button" @click="navigateToEdit">수정</button>ㅣ
+                    <button type="button" @click="deleteReview">삭제</button>
                 </div>
             </div>
         </div>
@@ -102,10 +98,18 @@ export default {
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ id: this.review.user_id })
                     });
+
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        console.error('서버 응답 오류:', errorText);
+                        throw new Error(`서버 오류 발생: 상태 코드 ${response.status}`);
+                    }
+
                     const result = await response.json();
                     alert(result.message);
+
                     if (result.status === 'success') {
-                        this.$router.push('/reviews'); // 삭제 후 리뷰 목록으로 이동
+                        this.$router.push('/reviews'); // 성공 시 목록 페이지로 이동
                     }
                 } catch (error) {
                     console.error('리뷰 삭제 중 오류 발생:', error);
