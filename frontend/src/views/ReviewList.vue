@@ -79,6 +79,7 @@ export default {
 .contents {
     width: 100%;
     margin: 0 auto;
+    overflow: hidden;
 }
 
 button {
