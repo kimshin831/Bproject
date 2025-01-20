@@ -7,8 +7,11 @@
             </div>
             <div class="title">
                 <!-- 로그인 상태에 따라 메시지 변경 -->
-                <template v-if="Object.values(isLoggedIn).some((v) => v)"> {{ userName }}님 환영합니다. </template>
-                <template v-else> 로그인을 해주세요. </template>
+                <template v-if="Object.values(isLoggedIn).some((v) => v)">
+                    <template v-if="userName && userName.trim() !== ''">{{ userName }}님 환영합니다.</template>
+                    <template v-else>회원님 환영합니다.</template>
+                </template>
+                <template v-else>로그인을 해주세요.</template>
             </div>
             <!-- 로그인 상태에 따라 버튼 변경 -->
             <div>

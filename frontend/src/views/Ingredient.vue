@@ -49,6 +49,18 @@
                     </div>
                     <div class="itemText">
                         <p class="item_tag">#000 #000 #000</p>
+                        <div class="heart-img" @click.stop="toggleHeart(items)">
+                            <img
+                                :src="
+                                    items.liked
+                                        ? require('@/assets/img/heart-solid.svg')
+                                        : require('@/assets/img/heart-regular.svg')
+                                "
+                                alt="하트이미지"
+                                width="20"
+                                height="20"
+                            />
+                        </div>
                         <p class="item_score"><img src="@/assets/img/leaf.svg" alt="score" /> 4.3점</p>
                         <p class="item_title">{{ items.title }}</p>
                         <p class="item_price">{{ items.price }} 원</p>
@@ -100,17 +112,22 @@ export default {
         setActiveTab(index) {
             this.activeTab = index;
         },
-        goToDetail(items) {
-            this.$router.push({
-                name: 'ProductPage',
-                params: {
-                    id: items,
-                    image: items.image,
-                    title: items.title,
-                    price: items.price
-                }
-            });
+        goToDetail(id) {
+            // 상세 페이지 이동
+            this.$router.push({ name: 'ProductPage', params: { id } });
+        },
+        toggleHeart(product) {
+            // 좋아요 상태 토글
+            product.liked = !product.liked;
+            // localStorage에 상태 저장
+            localStorage.setItem(`liked_${product.id}`, product.liked);
         }
+    },
+    created() {
+        this.item = CategoryItem.map((product) => {
+            const savedLiked = localStorage.getItem(`liked_${product.id}`);
+            return { ...product, liked: savedLiked === 'true' };
+        });
     }
 };
 </script>
@@ -197,6 +214,7 @@ export default {
     margin-bottom: 27px;
     width: 48%;
     height: auto;
+    cursor: pointer;
 }
 .itemBox .itemImg {
     margin: 0 auto;
@@ -207,6 +225,10 @@ export default {
     height: 170px;
     border-radius: 5px;
     margin-bottom: 3px;
+}
+.itemBox .itemText {
+    position: relative;
+    width: 100%;
 }
 .itemBox .itemText p {
     text-align: left;
@@ -219,11 +241,19 @@ export default {
     font-size: 12px;
 }
 
-.itemBox .itemText img {
+.itemBox .itemText .item_score > img {
     margin-right: 5px;
     filter: invert(10%) sepia(89%) saturate(6058%) hue-rotate(83deg) brightness(108%) contrast(86%);
 }
-
+.heart-img {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    right: 5px;
+    top: 0;
+    z-index: 100;
+    cursor: pointer;
+}
 .itemBox .itemText .item_score {
     display: flex;
     align-items: center;

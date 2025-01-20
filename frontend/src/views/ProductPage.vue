@@ -7,6 +7,18 @@
             </div>
             <div class="itemText">
                 <p class="item_tag">#000 #000 #000</p>
+                <div class="heart-img" @click="toggleHeart">
+                    <img
+                        :src="
+                            product.liked
+                                ? require('@/assets/img/heart-solid.svg')
+                                : require('@/assets/img/heart-regular.svg')
+                        "
+                        alt="하트이미지"
+                        width="25"
+                        height="25"
+                    />
+                </div>
                 <p class="item_score"><img src="@/assets/img/leaf.svg" alt="score" /> 4.3점</p>
                 <p class="item_title">{{ product.title }}</p>
                 <p class="item_price">{{ product.price }} 원</p>
@@ -43,10 +55,16 @@ export default {
         };
     },
     created() {
-        // URL의 id 파라미터로 상품 데이터 조회
         const productId = this.$route.params.id;
-        this.product = CategoryItem.find((item) => item.id === parseInt(productId));
-        if (!this.product) {
+        // 상품 데이터 로드
+        const savedProduct = CategoryItem.find((item) => item.id === parseInt(productId));
+        if (savedProduct) {
+            const savedLiked = localStorage.getItem(`liked_${savedProduct.id}`);
+            this.product = {
+                ...savedProduct,
+                liked: savedLiked === 'true'
+            };
+        } else {
             console.error('상품을 찾을 수 없습니다.');
         }
     },
@@ -84,6 +102,12 @@ export default {
                 name: 'Checkout',
                 query: { cart: JSON.stringify([productWithQuantity]) } // 바로 구매는 단일 상품
             });
+        },
+        toggleHeart() {
+            // 좋아요 상태 토글
+            this.product.liked = !this.product.liked;
+            // localStorage에 상태 저장
+            localStorage.setItem(`liked_${this.product.id}`, this.product.liked);
         }
     }
 };
@@ -104,6 +128,7 @@ export default {
 .itemBox .itemText {
     width: 90%;
     margin: 0 auto;
+    position: relative;
 }
 .itemBox .itemText p {
     text-align: left;
@@ -112,11 +137,18 @@ export default {
     line-height: 27px;
 }
 
-.itemBox .itemText img {
+.itemBox .itemText .item_score > img {
     margin-right: 5px;
     filter: invert(10%) sepia(89%) saturate(6058%) hue-rotate(83deg) brightness(108%) contrast(86%);
 }
-
+.heart-img {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
 .itemBox .itemText .item_score {
     display: flex;
     align-items: center;
